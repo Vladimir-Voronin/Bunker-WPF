@@ -1,0 +1,21 @@
+D:\Bunker WPF\Bunker WPF\bin\Debug\Bunker WPF.exe.config
+D:\Bunker WPF\Bunker WPF\bin\Debug\Bunker WPF.exe
+D:\Bunker WPF\Bunker WPF\bin\Debug\Bunker WPF.pdb
+D:\Bunker WPF\Bunker WPF\obj\Debug\Bunker WPF.csprojAssemblyReference.cache
+D:\Bunker WPF\Bunker WPF\obj\Debug\MainWindow.g.cs
+D:\Bunker WPF\Bunker WPF\obj\Debug\App.g.cs
+D:\Bunker WPF\Bunker WPF\obj\Debug\Bunker WPF_MarkupCompile.cache
+D:\Bunker WPF\Bunker WPF\obj\Debug\Bunker WPF_MarkupCompile.lref
+D:\Bunker WPF\Bunker WPF\obj\Debug\MainWindow.baml
+D:\Bunker WPF\Bunker WPF\obj\Debug\Bunker WPF.g.resources
+D:\Bunker WPF\Bunker WPF\obj\Debug\Bunker_WPF.Properties.Resources.resources
+D:\Bunker WPF\Bunker WPF\obj\Debug\Bunker WPF.csproj.GenerateResource.cache
+D:\Bunker WPF\Bunker WPF\obj\Debug\Bunker WPF.exe
+D:\Bunker WPF\Bunker WPF\obj\Debug\Bunker WPF.pdb
+D:\Bunker WPF\Bunker WPF\bin\Debug\MaterialDesignColors.dll
+D:\Bunker WPF\Bunker WPF\bin\Debug\MaterialDesignThemes.Wpf.dll
+D:\Bunker WPF\Bunker WPF\bin\Debug\MaterialDesignColors.pdb
+D:\Bunker WPF\Bunker WPF\bin\Debug\MaterialDesignThemes.Wpf.pdb
+D:\Bunker WPF\Bunker WPF\bin\Debug\MaterialDesignThemes.Wpf.xml
+D:\Bunker WPF\Bunker WPF\obj\Debug\Bunker WPF.csproj.CopyComplete
+D:\Bunker WPF\Bunker WPF\obj\Debug\App.baml

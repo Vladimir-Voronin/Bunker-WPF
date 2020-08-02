@@ -1,0 +1,68 @@
+﻿<Window x:Class="Bunker_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bunker_WPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920">
+    <Grid Margin="15,15,15,18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="360*"/>
+            <RowDefinition Height="360*"/>
+            <RowDefinition Height="320*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="207*"/>
+            <ColumnDefinition Width="257*"/>
+            <ColumnDefinition Width="56*"/>
+            <ColumnDefinition Width="314*"/>
+            <ColumnDefinition Width="314*"/>
+            <ColumnDefinition Width="313*"/>
+            <ColumnDefinition Width="314*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="BlockNameCatastrophe" FontSize="20" TextAlignment="Center" HorizontalAlignment="Left" Margin="10,107,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Height="70" Width="292" Background="#FFFFFDE9" Padding="10" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="BlockNameDescription"  FontSize="14" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Height="291" Width="292" Grid.Column="2" Padding="10" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="BlockPlayer1" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" HorizontalAlignment="Center"  Margin="11,49,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="245" Width="292" Padding="10" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="BlockPlayer2" HorizontalAlignment="Center" Margin="10,44,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="2" Background="#FFFFEEEE" Padding="10" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="BlockPlayer3" HorizontalAlignment="Center" Margin="11,44,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="4" Background="#FFFFEEEE" Padding="10"/>
+        <TextBlock x:Name="BlockPlayer4" HorizontalAlignment="Center" Margin="11,44,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="5" Background="#FFFFEEEE" Padding="10"/>
+        <TextBlock x:Name="BlockPlayer5" HorizontalAlignment="Center" Margin="11,44,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="6" Background="#FFFFEEEE" Padding="10"/>
+        <TextBlock x:Name="BlockPlayer6" HorizontalAlignment="Center" Margin="11,44,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="7" Background="#FFFFEEEE" Padding="10"/>
+        <TextBlock x:Name="BlockPlayer7" HorizontalAlignment="Center" Margin="11,44,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1" Background="#FFFFEEEE" Padding="10" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="BlockPlayer8" HorizontalAlignment="Center" Margin="10,44,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1" Grid.Column="2" Background="#FFFFEEEE" Padding="10" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="BlockPlayer9" HorizontalAlignment="Center" Margin="11,44,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1" Grid.Column="4" Background="#FFFFEEEE" Padding="10"/>
+        <TextBlock x:Name="BlockPlayer10" HorizontalAlignment="Center" Margin="11,44,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1" Grid.Column="5" Background="#FFFFEEEE" Padding="10"/>
+        <TextBlock x:Name="BlockPlayer11" HorizontalAlignment="Center" Margin="11,44,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1" Grid.Column="6" Background="#FFFFEEEE" Padding="10"/>
+        <TextBlock x:Name="BlockPlayer12" HorizontalAlignment="Center" Margin="11,44,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1" Grid.Column="7" Background="#FFFFEEEE" Padding="10"/>
+        <TextBlock Name ="GameProgress" Grid.Column="6" HorizontalAlignment="Center" Margin="11,49,10,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Height="242" Width="292" Background="#FFFFFDE9" Padding="10"/>
+        <TextBlock Grid.Column="6" TextAlignment="Center" HorizontalAlignment="Center" Margin="11,10,10,0" Grid.Row="2" TextWrapping="Wrap" Text="Ход игры" VerticalAlignment="Top" Width="292" Height="30"/>
+
+
+        <TextBox x:Name="BoxNamePlayer01" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="10,10,64,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="BoxNamePlayer02" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="10,10,7,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14" Grid.Column="2"/>
+        <TextBox x:Name="BoxNamePlayer03" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,10,63,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" Grid.Column="4" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
+        <TextBox x:Name="BoxNamePlayer04" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,10,63,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" Grid.Column="5" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
+        <TextBox x:Name="BoxNamePlayer05" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,10,62,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" Grid.Column="6" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
+        <TextBox x:Name="BoxNamePlayer06" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,10,63,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" Grid.Column="7" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
+        <TextBox x:Name="BoxNamePlayer07" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,12,63,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="240" Grid.Row="1" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="BoxNamePlayer08" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="10,10,7,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" Grid.Row="1" Grid.Column="2" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
+        <TextBox x:Name="BoxNamePlayer09" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,10,63,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" Grid.Row="1" Grid.Column="4" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
+        <TextBox x:Name="BoxNamePlayer10" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,10,63,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" Grid.Row="1" Grid.Column="5" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
+        <TextBox x:Name="BoxNamePlayer11" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,10,62,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" Grid.Row="1" Grid.Column="6" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
+        <TextBox x:Name="BoxNamePlayer12" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,10,63,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" Grid.Row="1" Grid.Column="7" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
+
+        <Button x:Name="BNew_Game" Content="Начать новую игру" Style ="{DynamicResource MaterialDesignRaisedLightButton}" Grid.Column="7" HorizontalAlignment="Left" Margin="137,254,0,0" Grid.Row="2" VerticalAlignment="Top" Width="164" Click="New_Game" RenderTransformOrigin="0.5,0.5" Height="44"/>
+        <Button x:Name="BNext_Round" Content="Перейти в следующий раунд" Style ="{StaticResource MaterialDesignRaisedLightButton}" Grid.Column="5" HorizontalAlignment="Left" Margin="75,157,0,0" Grid.Row="2" VerticalAlignment="Top" Width="228" Click="New_Round" Background="#FFEAA367"/>
+        <Button x:Name="BNext_Talking" Content="Мнение следующего игрока" Style ="{StaticResource MaterialDesignRaisedLightButton}" Grid.Column="5" HorizontalAlignment="Left" Margin="75,204,0,0" Grid.Row="2" VerticalAlignment="Top" Width="227" Click="Next_Player_Talking" Background="#FFEAA367"/>
+        <Button x:Name="BVoting" Content="Голосование" Grid.Column="5" Style ="{StaticResource MaterialDesignRaisedLightButton}" HorizontalAlignment="Left" Margin="75,252,0,0" Grid.Row="2" VerticalAlignment="Top" Width="227" Click="Voting_On" Background="#FFEAA367"/>
+        <TextBox x:Name="PlayersForEndingGame" Grid.Column="7" HorizontalAlignment="Left" Height="19" Margin="279,169,0,0" Grid.Row="2" TextWrapping="Wrap" Text="8" VerticalAlignment="Top" Width="22"/>
+        <TextBlock Grid.Column="7" HorizontalAlignment="Left" Margin="109,170,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Укажите количество игроков:" VerticalAlignment="Top" Height="19" Width="165"/>
+        <TextBox x:Name="HowManyPlayers" Grid.Column="7" HorizontalAlignment="Left" Height="19" Margin="279,216,0,0" Grid.Row="2" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Width="22"/>
+        <TextBlock Grid.Column="7" TextAlignment="Right" HorizontalAlignment="Left" Margin="109,201,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Укажите количество игроков в конце игры:" VerticalAlignment="Top" Height="32" Width="165"/>
+
+
+    </Grid>
+</Window>
