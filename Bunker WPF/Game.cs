@@ -96,7 +96,6 @@ namespace Bunker
 
         public Game StartGame()
         {
-            
             GameIn?.Invoke("Игра началась");
             CreatePlayers(PlayersToStart);
 
@@ -113,6 +112,10 @@ namespace Bunker
         public void StartNewRound()
         {
             Main.GameProgress.Text = ""; //очищаем чат
+            foreach (var player in Player.PlayersList)
+            {
+                player.OnVote = false;
+            }
             RoundNumber++;
             GameIn?.Invoke($"Начался раунд {RoundNumber}");
             //Таймер (подключить отдельно для возможности игры с таймером и без)
@@ -241,13 +244,11 @@ namespace Bunker
             {
                 if (startgame) { player.IsAlive = true; }
 
-               
                 //Открытие всех позиций, соотвтествующих уровню LevelAdd
                 foreach (Position pos in player.PlayerCard.allpositions)
                 {
                     if (pos.Levelhide <= LevelAdd + RoundNumber) { pos.Open = true; }
                 }
-               
             }
         }
 
@@ -267,10 +268,8 @@ namespace Bunker
                     {
                         block.Text += pos.TypeDataPrint + pos.Data + "\n";
                     }
-                    
                 }
             }
         }
-
     }
 }

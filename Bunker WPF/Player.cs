@@ -15,6 +15,8 @@ namespace Bunker
 
         public int Quanity { get; set; }
 
+        //Выставлен ли игрок на голосование
+        public bool OnVote { get; set; } = false;
         //Количество голосов за игрока (расширение во front-end)
         public int Vote { get; set; }
 

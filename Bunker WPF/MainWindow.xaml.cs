@@ -141,6 +141,7 @@ namespace Bunker_WPF
             
             //Очищается чат
             GameProgress.Text = "";
+            AdditionallyСondition.Text = "";
 
             //Все кнопки, которые могли быть отключены - включаются
             BNext_Round.IsEnabled = true;
@@ -212,7 +213,6 @@ namespace Bunker_WPF
         {
             Button btn = (Button)e.OriginalSource;
             int i = Int32.Parse(btn.Name.Substring(btn.Name.Length - 2));
-            GameProgress.Text = i.ToString();
             foreach (var player in Player.PlayersList)
             {
                 if(player.Quanity == i)
@@ -227,6 +227,23 @@ namespace Bunker_WPF
             }
         }
 
+        private void ExposePlayer(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)e.OriginalSource;
+            int i = Int32.Parse(btn.Name.Substring(btn.Name.Length - 2));
+            foreach (var player in Player.PlayersList)
+            {
+                if (player.Quanity == i)
+                {
+                    if(player.OnVote == false)
+                    {
+                        player.OnVote = true;
+                        CurrentGame.PrintMes($"Игрок {player.Name} выставлен");
+                        break;
+                    }
+                }
+            }
+        }
         private void New_Condition(object sender, RoutedEventArgs e)
         {
             if (CurrentGame.Cataclysm.FlagZeroToOne == 0)
