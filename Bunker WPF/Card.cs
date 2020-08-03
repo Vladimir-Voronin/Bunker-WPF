@@ -6,23 +6,22 @@ namespace Bunker
 {
     class Card
     {
-        //Все 12 позиций с присвоением рандомного значения по умолчанию (в один момент сделал вместе со свойствами поля, 
-        //возможно стоит убрать, стало слишком громоздко, но пока оставлю)
+        //Все 12 позиций с присвоением рандомного значения по умолчанию 
         public Position Gender { get; set; } = new Position("gender.txt", 0);
         public Position Old { get; set; } = new Position("old.txt", 0);
         public Position Profession { get; set; } = new Position("profession.txt", 0);
-        public Position Сhildbearing { get; set; } = new Position("childbearing.txt", 1);
-        public Position Health { get; set; } = new Position("health.txt", 0);
-        public Position Phobia { get; set; } = new Position("phobia.txt", 0);
-        public Position Hobby { get; set; } = new Position("hobby.txt", 0);
-        public Position Character { get; set; } = new Position("character.txt", 0);
-        public Position Additionally { get; set; } = new Position("additionally.txt", 0);
-        public Position Baggage { get; set; } = new Position("baggage.txt", 0);
-        public Position Card1 { get; set; } = new Position("card1.txt", 0);
-        public Position Card2 { get; set; } = new Position("card2.txt", 0);
+        public Position Сhildbearing { get; set; } = new Position("childbearing.txt", 0);
+        public Position Health { get; set; } = new Position("health.txt", 1);
+        public Position Phobia { get; set; } = new Position("phobia.txt", 2);
+        public Position Hobby { get; set; } = new Position("hobby.txt", 3);
+        public Position Character { get; set; } = new Position("character.txt", 4);
+        public Position Additionally { get; set; } = new Position("additionally.txt", 5);
+        public Position Baggage { get; set; } = new Position("baggage.txt", 6);
+        public Position Card1 { get; set; } = new Position("card1.txt", 7);
+        public Position Card2 { get; set; } = new Position("card2.txt", 8);
 
         //Возможно список всех позиций будет полезным
-        public List<Position> allpositions = new List<Position>(12) { };
+        public List<Position> allpositions = new List<Position>(12);
       
         public Card()
         {
@@ -39,7 +38,5 @@ namespace Bunker
             allpositions.Add(Card1);
             allpositions.Add(Card2);
         }
-
-
     }
 }

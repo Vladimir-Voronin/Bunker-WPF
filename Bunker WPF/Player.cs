@@ -28,8 +28,12 @@ namespace Bunker
         public Player(bool createcard = false)
         {
             Name = "Survivor" + ++Number; //Префиксный инкремент, чтобы номер 1 игрока был равен 1, а не 0
+            if (createcard)
+            {
+                PlayerCard = new Card();
+            }
             PlayersList.Add(this);
-            if(createcard) { PlayerCard = new Card(); }
+            
         }
 
         public void CreateOrRefreshCard()
@@ -54,7 +58,15 @@ namespace Bunker
             PlayerCard = null;
         }
 
-        
-        
+        public static void DeleteAllPlayers()
+        {
+            if(Player.PlayersList.Count > 0)
+            {
+                for (int i = Player.PlayersList.Count; i > 0; i--)
+                {
+                    Player.PlayersList[i - 1].DeletePlayer();
+                }
+            }   
+        }
     }
 }

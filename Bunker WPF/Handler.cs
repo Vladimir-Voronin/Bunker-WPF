@@ -8,12 +8,14 @@ namespace Bunker
     //Статичный класс, содержащий в себе методы для обработки различных позиций
     static class Handler
     {
+        static Random Rand { get; set; } = new Random();
         //Метод возвращает рандомную строчку из текстового файла
+
+
         public static string RandomStrFile(string file)
         {
-            Random rand = new Random();
-            string[] strs = File.ReadAllLines($@"D:\Bunker WPF\Bunker WPF\data\{file}" , Encoding.UTF8);
-            string s = strs[rand.Next(strs.Length)];
+            string[] strs = File.ReadAllLines($@"D:\Bunker WPF\Bunker WPF\data\{file}", Encoding.UTF8);
+            string s = strs[Rand.Next(strs.Length)];
             return s;
         }
 

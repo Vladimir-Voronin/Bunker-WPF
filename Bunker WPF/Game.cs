@@ -37,7 +37,7 @@ namespace Bunker
         public List<Player> PlayersToVote { get; set; }
 
         //Содержит объект MainWindow для доступа к полям и методам, обрабатывающим интерфейс
-        private MainWindow Main { get; set; }
+        public MainWindow Main { get; set; }
 
         //Конструктор (добавляет нужные методы в делегаты, определяет количество игроков для конца игры, изменяет правила)
         public Game(MainWindow main, bool MessageOn = true)
@@ -70,23 +70,20 @@ namespace Bunker
         //Отдельный метод создан для будущего расширения во front-end
         public void CreatePlayers(int many)
         {
-            for (int i = 0; i < many - 1; i++)
+            for (int i = 0; i < many; i++)
             {
-                Player player = new Player();
+                Player player = new Player(true);
             }
 
         }
 
         //Раздача карт (до начала игры)
-        public void DealCards()
-        {
-            foreach (var player in Player.PlayersList)
-            {
-                player.CreateOrRefreshCard();
-            }
-            dealingcards = true;
-            GameIn?.Invoke("Все игроки получили карты");
-        }
+        //public void DealCards()
+        //{
+
+        //    dealingcards = true;
+        //    GameIn?.Invoke("Все игроки получили карты");
+        //}
 
         public Game StartGame()
         {
@@ -96,10 +93,15 @@ namespace Bunker
 
             Main.BlockNameCatastrophe.Text = Cataclysm.Data;
             Main.BlockNameDescription.Text = Cataclysm.Description;
-            if (dealingcards == false) { DealCards(); }
 
             CardReload(true);
-            
+            PrintCard();
+
+            foreach (var player in Player.PlayersList)
+            {
+                Main.GameProgress.Text += player.PlayerCard.Character.Data;
+            }
+
             return this;
         }
 
@@ -127,6 +129,7 @@ namespace Bunker
             List<Player> tosurvive = ToSurvive(Player.PlayersList);
             DeleteOrSurviveRound(tosurvive);
 
+            //Проверка на конец игры
             if (Player.PlayersList.Count <= PlayersToEnd)
             {
                 GameIn?.Invoke("Игра окончена");
@@ -136,16 +139,18 @@ namespace Bunker
                     GameIn?.Invoke(player.Name);
                     
                 }
-                for (int i = Player.PlayersList.Count - 1; i > 0; i--)
-                {
-                    Player.PlayersList[i].DeletePlayer();
-                }
+                Player.DeleteAllPlayers();
                 Main.BNext_Round.IsEnabled = false;
                 Main.BNext_Talking.IsEnabled = false;
                 Main.BVoting.IsEnabled = false;
 
             }
-            if( Player.PlayersList.Count > 0) { CardReload(); }
+
+            if( Player.PlayersList.Count > 0) 
+            { 
+                CardReload();
+                PrintCard();
+            }
             
         }
 
@@ -233,25 +238,40 @@ namespace Bunker
             {
                 if (startgame) { player.IsAlive = true; }
 
-                if (RoundNumber == 0 || RoundNumber == 1)
+               
+                //Открытие всех позиций, соотвтествующих уровню LevelAdd
+                foreach (Position pos in player.PlayerCard.allpositions)
                 {
-                    //Открытие всех позиций, соотвтествующих уровню LevelAdd
-                    foreach (Position pos in player.PlayerCard.allpositions)
-                    {
-                        if (pos.Levelhide <= LevelAdd) { pos.Open = true; }
-                    }
+                    if (pos.Levelhide <= LevelAdd + RoundNumber) { pos.Open = true; }
                 }
-                else
+               
+            }
+        }
+
+        public void PrintCard()
+        {
+            int i = 0;
+            foreach (Player player in Player.PlayersList)
+            {
+                i++;
+                string name = "BlockPlayer" + i.ToString();
+                TextBlock block = Main.TextBlockDict[name];
+
+                block.Text = ""; //очищаем
+                block.Text += player.Name + "\n";
+
+                block.Text += Main.TextBlockDict[name].Name + "\n";
+               
+                foreach (Position pos in player.PlayerCard.allpositions)
                 {
-                    //Открытие всех позиций, соотвтествующих уровню LevelAdd + от раунда
-                    foreach (Position pos in player.PlayerCard.allpositions)
+                    if (pos.Open)
                     {
-                        if (pos.Levelhide <= LevelAdd + RoundNumber - 1) { pos.Open = true; }
+                        block.Text += pos.TypeDataPrint + pos.Data + "\n";
                     }
+                    
                 }
             }
         }
 
-        
     }
 }

@@ -40,63 +40,63 @@
                 CornerRadius="10" Background="#FFF2FCFF"
                 HorizontalAlignment="Center"
                  Height="250" Width="292">
-            <TextBlock x:Name="BlockPlayer01" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Padding="10,8,20,10" Margin="-6"/>
+            <TextBlock x:Name="BlockPlayer1" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Padding="10,8,20,10" Margin="-6"/>
         </Border>
 
         <Border BorderBrush="#FFFF7171" BorderThickness="6" 
                 CornerRadius="10" Background="#FFF2FCFF"
                 HorizontalAlignment="Center"
                  Height="250" Width="292" Grid.Column="1">
-            <TextBlock x:Name="BlockPlayer02" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="1"  Padding="10,8,20,10" Margin="-6"/>
+            <TextBlock x:Name="BlockPlayer2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="1"  Padding="10,8,20,10" Margin="-6"/>
         </Border>
 
         <Border BorderBrush="#FFFF7171" BorderThickness="6"
                 CornerRadius="10" Background="#FFF2FCFF"
                 HorizontalAlignment="Center"
                  Height="250" Width="292" Grid.Column="2">
-            <TextBlock x:Name="BlockPlayer03" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="2"  Padding="10,8,20,10" Margin="-6"/>
+            <TextBlock x:Name="BlockPlayer3" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="2"  Padding="10,8,20,10" Margin="-6"/>
         </Border>
 
         <Border BorderBrush="#FFFF7171" BorderThickness="6"
                 CornerRadius="10" Background="#FFF2FCFF"
                 HorizontalAlignment="Center"
                  Height="250" Width="292" Grid.Column="3">
-            <TextBlock x:Name="BlockPlayer04" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="3"  Padding="10,8,20,10" Margin="-6"/>
+            <TextBlock x:Name="BlockPlayer4" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="3"  Padding="10,8,20,10" Margin="-6"/>
         </Border>
 
         <Border BorderBrush="#FFFF7171" BorderThickness="6"
                 CornerRadius="10" Background="#FFF2FCFF"
                 HorizontalAlignment="Center"
                  Height="250" Width="292" Grid.Column="4">
-            <TextBlock x:Name="BlockPlayer05" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="4"  Padding="10,8,20,10" Margin="-6"/>
+            <TextBlock x:Name="BlockPlayer5" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="4"  Padding="10,8,20,10" Margin="-6"/>
         </Border>
 
         <Border BorderBrush="#FFFF7171" BorderThickness="6"
                 CornerRadius="10" Background="#FFF2FCFF"
                 HorizontalAlignment="Center"
                  Height="250" Width="292" Grid.Column="5">
-            <TextBlock x:Name="BlockPlayer06" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="5"  Padding="10,8,20,10" Margin="-6"/>
+            <TextBlock x:Name="BlockPlayer6" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Column="5"  Padding="10,8,20,10" Margin="-6"/>
         </Border>
 
         <Border BorderBrush="#FFFF7171" BorderThickness="6"
                 CornerRadius="10" Background="#FFF2FCFF"
                 HorizontalAlignment="Center"
                  Height="250" Width="292" Grid.Row="1" Grid.Column="0">
-            <TextBlock x:Name="BlockPlayer07" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1"  Padding="10,8,20,10" Margin="-6"/>
+            <TextBlock x:Name="BlockPlayer7" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1"  Padding="10,8,20,10" Margin="-6"/>
         </Border>
 
         <Border BorderBrush="#FFFF7171" BorderThickness="6"
                 CornerRadius="10" Background="#FFF2FCFF"
                 HorizontalAlignment="Center"
                  Height="250" Width="292" Grid.Row="1" Grid.Column="1">
-            <TextBlock x:Name="BlockPlayer08" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1" Grid.Column="1"  Padding="10,8,20,10" Margin="-6"/>
+            <TextBlock x:Name="BlockPlayer8" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1" Grid.Column="1"  Padding="10,8,20,10" Margin="-6"/>
         </Border>
 
         <Border BorderBrush="#FFFF7171" BorderThickness="6"
                 CornerRadius="10" Background="#FFF2FCFF"
                 HorizontalAlignment="Center"
                  Height="250" Width="292" Grid.Row="1" Grid.Column="2">
-            <TextBlock x:Name="BlockPlayer09" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1" Grid.Column="2"  Padding="10,8,20,10" Margin="-6"/>
+            <TextBlock x:Name="BlockPlayer9" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="250" Width="292" Grid.Row="1" Grid.Column="2"  Padding="10,8,20,10" Margin="-6"/>
         </Border>
 
         <Border BorderBrush="#FFFF7171" BorderThickness="6"
