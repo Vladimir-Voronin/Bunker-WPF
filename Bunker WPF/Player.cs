@@ -12,6 +12,9 @@ namespace Bunker
         //Количество экземпляров
         public static int Number { get; set; }
 
+
+        public int Quanity { get; set; }
+
         //Количество голосов за игрока (расширение во front-end)
         public int Vote { get; set; }
 
@@ -28,12 +31,12 @@ namespace Bunker
         public Player(bool createcard = false)
         {
             Name = "Survivor" + ++Number; //Префиксный инкремент, чтобы номер 1 игрока был равен 1, а не 0
+            Quanity = Number;
             if (createcard)
             {
                 PlayerCard = new Card();
             }
             PlayersList.Add(this);
-            
         }
 
         public void CreateOrRefreshCard()

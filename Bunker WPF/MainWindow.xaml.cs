@@ -36,7 +36,7 @@ namespace Bunker_WPF
 
         public Dictionary<string, TextBlock> TextBlockDict { get; set; }
 
-
+        public Dictionary<string, Button> ButtonDeleteDict { get; set; }
 
         public MainWindow()
         {
@@ -80,6 +80,22 @@ namespace Bunker_WPF
                 { "BlockPlayer10", BlockPlayer10 },
                 { "BlockPlayer11", BlockPlayer11 },
                 { "BlockPlayer12", BlockPlayer12 },
+            };
+
+            ButtonDeleteDict = new Dictionary<string, Button>
+            {
+                { "BDelete01", BDelete01 },
+                { "BDelete02", BDelete02 },
+                { "BDelete03", BDelete03 },
+                { "BDelete04", BDelete04 },
+                { "BDelete05", BDelete05 },
+                { "BDelete06", BDelete06 },
+                { "BDelete07", BDelete07 },
+                { "BDelete08", BDelete08 },
+                { "BDelete09", BDelete09 },
+                { "BDelete10", BDelete10 },
+                { "BDelete11", BDelete11 },
+                { "BDelete12", BDelete12 },
             };
         }
 
@@ -133,17 +149,20 @@ namespace Bunker_WPF
             int number;
             int start;
             int end;
+            int liveadd;
             if (Int32.TryParse(HowManyPlayers.Text, out number) && Int32.TryParse(PlayersForEndingGame.Text, out number))
             {
                 start = Int32.Parse(PlayersForEndingGame.Text);
                 end = Int32.Parse(HowManyPlayers.Text);
+                liveadd = Int32.Parse(LiveAddBox.Text);
             }
             else
             {
                 start = 8;
                 end = 4;
+                liveadd = 0;
             }
-            Game game1 = new Game(this, start, end);
+            Game game1 = new Game(this, start, end, liveadd);
 
             AssignDict();
             Discharge();
@@ -187,6 +206,24 @@ namespace Bunker_WPF
             CurrentGame.Voting(CurrentGame.PlayersToVote);
         }
 
+        private void DeletePlayer(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)e.OriginalSource;
+            int i = Int32.Parse(btn.Name.Substring(btn.Name.Length - 2));
+            GameProgress.Text = i.ToString();
+            foreach (var player in Player.PlayersList)
+            {
+                if(player.Quanity == i)
+                {
+                    player.DeletePlayer();
+                    string number = i.ToString();
+                    GameProgress.Text = number;
+
+                    TextBlockDict["BlockPlayer" + number].Text = "";
+                    break;
+                }
+            }
+        }
       
     }
 

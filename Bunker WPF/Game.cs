@@ -39,9 +39,18 @@ namespace Bunker
         //Содержит объект MainWindow для доступа к полям и методам, обрабатывающим интерфейс
         public MainWindow Main { get; set; }
 
-        //Конструктор (добавляет нужные методы в делегаты, определяет количество игроков для конца игры, изменяет правила)
-        public Game(MainWindow main, bool MessageOn = true)
+        public enum Rules
         {
+            Managed,
+            Auto
+        };
+
+        public Rules Rule { get; set; }
+
+        //Конструктор (добавляет нужные методы в делегаты, определяет количество игроков для конца игры, изменяет правила)
+        public Game(MainWindow main, bool MessageOn = true, Rules rule = 0)
+        {
+            Rule = rule;
             Message.FlagGameInfo = MessageOn;
             if (Message.FlagGameInfo == true) { GameIn += PrintMes; }
             Main = main;
@@ -97,11 +106,6 @@ namespace Bunker
             CardReload(true);
             PrintCard();
 
-            foreach (var player in Player.PlayersList)
-            {
-                Main.GameProgress.Text += player.PlayerCard.Character.Data;
-            }
-
             return this;
         }
 
@@ -119,15 +123,18 @@ namespace Bunker
                     Talking(player);
                 }
             }
-            GameIn?.Invoke("Начинается голосование");
-            Voting(Player.PlayersList);
-
             
-            //Как реализовать удаление игрока???
 
-            //Обработка результатов голосования (передается список игроков, над которыми будет работать алгоритм)
-            List<Player> tosurvive = ToSurvive(Player.PlayersList);
-            DeleteOrSurviveRound(tosurvive);
+            //
+            if (Rule == Rules.Auto)
+            {
+                GameIn?.Invoke("Начинается голосование");
+                Voting(Player.PlayersList);
+                //Обработка результатов голосования (передается список игроков, над которыми будет работать алгоритм)
+                List<Player> tosurvive = ToSurvive(Player.PlayersList);
+                DeleteOrSurviveRound(tosurvive);
+            }
+            
 
             //Проверка на конец игры
             if (Player.PlayersList.Count <= PlayersToEnd)
@@ -224,12 +231,7 @@ namespace Bunker
         public void Voting(List<Player> Players)
         {
 
-            Random rand = new Random();
-            foreach (var player in Players)
-            {
-                player.Vote = rand.Next(0, 4);
-                Console.WriteLine($"{player.Name}: {player.Vote}");
-            }
+            
         }
 
         public void CardReload(bool startgame = false)
@@ -250,18 +252,14 @@ namespace Bunker
 
         public void PrintCard()
         {
-            int i = 0;
             foreach (Player player in Player.PlayersList)
             {
-                i++;
-                string name = "BlockPlayer" + i.ToString();
+                
+                string name = "BlockPlayer" + player.Quanity.ToString();
                 TextBlock block = Main.TextBlockDict[name];
 
                 block.Text = ""; //очищаем
-                block.Text += player.Name + "\n";
 
-                block.Text += Main.TextBlockDict[name].Name + "\n";
-               
                 foreach (Position pos in player.PlayerCard.allpositions)
                 {
                     if (pos.Open)

@@ -3,18 +3,24 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace Bunker
 {
     //Статичный класс, содержащий в себе методы для обработки различных позиций
     static class Handler
     {
+
         static Random Rand { get; set; } = new Random();
+
         //Метод возвращает рандомную строчку из текстового файла
-
-
         public static string RandomStrFile(string file)
         {
-            string[] strs = File.ReadAllLines($@"D:\Bunker WPF\Bunker WPF\data\{file}", Encoding.UTF8);
+            string direct = Directory.GetCurrentDirectory();
+            string path;
+            path = Directory.GetParent(direct).ToString();
+            path = Directory.GetParent(path).ToString();
+            path = path + @"\data\" + file;
+            string[] strs = File.ReadAllLines(path, Encoding.UTF8);
             string s = strs[Rand.Next(strs.Length)];
             return s;
         }
@@ -22,11 +28,16 @@ namespace Bunker
         //Выбор рандомного файла из папки, возвращает название файла и его содержание (кортежом)
         public static (string, string) RandomCatastrophe()
         {
-            var rand = new Random();
-            var files = Directory.GetFiles(@"D:\Bunker WPF\Bunker WPF\Catastrophe", "*.txt");
-            var file = files[rand.Next(files.Length)];
-            string s = file.Substring(0, file.Length - 4);
-            s = s.Replace(@"D:\Bunker WPF\Bunker WPF\Catastrophe\", "");
+            
+            string direct = Directory.GetCurrentDirectory();
+            string path;
+            path = Directory.GetParent(direct).ToString();
+            path = Directory.GetParent(path).ToString();
+            path = path + @"\Catastrophe\";
+            var files = Directory.GetFiles(path, "*.txt");
+            var file = files[Rand.Next(files.Length)];
+            var filename = Path.GetFileName(file);
+            string s = filename.Substring(0, filename.Length - 4);
             return (s, File.ReadAllText(file, Encoding.UTF8));
         }
 
