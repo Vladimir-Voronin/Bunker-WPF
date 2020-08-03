@@ -20,11 +20,5 @@ namespace Bunker
         //Делегаты GameInfo предназначены для отображения действий, происходящих во время игры
         public delegate void GameInfo(string mes);
         public delegate void GameInfo<T>(string mes, T pointer);
-
-
-        
-             
-         
-        
     }
 }

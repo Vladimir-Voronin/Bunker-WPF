@@ -150,6 +150,7 @@ namespace Bunker
                 Main.BNext_Round.IsEnabled = false;
                 Main.BNext_Talking.IsEnabled = false;
                 Main.BVoting.IsEnabled = false;
+                Main.BNew_Condition.IsEnabled = false;
 
             }
 

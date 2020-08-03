@@ -17,8 +17,8 @@ namespace Bunker
         public Position Character { get; set; } = new Position("character.txt", 4);
         public Position Additionally { get; set; } = new Position("additionally.txt", 5);
         public Position Baggage { get; set; } = new Position("baggage.txt", 6);
-        public Position Card1 { get; set; } = new Position("card1.txt", 7);
-        public Position Card2 { get; set; } = new Position("card2.txt", 8);
+        //public Position Card1 { get; set; } = new Position("card1.txt", 7);
+        //public Position Card2 { get; set; } = new Position("card2.txt", 8);
 
         //Возможно список всех позиций будет полезным
         public List<Position> allpositions = new List<Position>(12);
@@ -35,8 +35,8 @@ namespace Bunker
             allpositions.Add(Character);
             allpositions.Add(Additionally);
             allpositions.Add(Baggage);
-            allpositions.Add(Card1);
-            allpositions.Add(Card2);
+            //allpositions.Add(Card1);
+            //allpositions.Add(Card2);
         }
     }
 }

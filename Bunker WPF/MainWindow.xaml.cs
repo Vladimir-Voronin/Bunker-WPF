@@ -44,6 +44,7 @@ namespace Bunker_WPF
             BNext_Round.IsEnabled = false;
             BNext_Talking.IsEnabled = false;
             BVoting.IsEnabled = false;
+            BNew_Condition.IsEnabled = false;
             
         }
 
@@ -145,6 +146,7 @@ namespace Bunker_WPF
             BNext_Round.IsEnabled = true;
             BNext_Talking.IsEnabled = true;
             BVoting.IsEnabled = true;
+            BNew_Condition.IsEnabled = true;
 
             int number;
             int start;
@@ -224,7 +226,20 @@ namespace Bunker_WPF
                 }
             }
         }
-      
+
+        private void New_Condition(object sender, RoutedEventArgs e)
+        {
+            if (CurrentGame.Cataclysm.FlagZeroToOne == 0)
+            {
+                AdditionallyСondition.Text += CurrentGame.Cataclysm.Card1 + "\n\n";
+                CurrentGame.Cataclysm.FlagZeroToOne++;
+            }
+            else if(CurrentGame.Cataclysm.FlagZeroToOne == 1)
+            {
+                AdditionallyСondition.Text += CurrentGame.Cataclysm.Card2;
+                CurrentGame.Cataclysm.FlagZeroToOne++;
+            }
+        }
     }
 
 }
