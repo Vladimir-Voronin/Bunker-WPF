@@ -22,13 +22,7 @@ namespace Bunker
         public delegate void GameInfo<T>(string mes, T pointer);
 
 
-        //Делегат для получения переменной по её текстовому представлению
-        public delegate string varDelegate();
-        //Dictionary<string, varDelegate> _var =
-                        //new Dictionary<string, varDelegate>
-                        //{
-                    //{ "A1", delegate() { return A1; } },
-                    //{ "A2", delegate() { return A2; } },
+        
              
          
         

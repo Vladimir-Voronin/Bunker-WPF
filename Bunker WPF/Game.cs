@@ -70,7 +70,7 @@ namespace Bunker
         //Отдельный метод создан для будущего расширения во front-end
         public void CreatePlayers(int many)
         {
-            for (int i = 0; i < many; i++)
+            for (int i = 0; i < many - 1; i++)
             {
                 Player player = new Player();
             }
@@ -134,14 +134,19 @@ namespace Bunker
                 foreach (var player in Player.PlayersList)
                 {
                     GameIn?.Invoke(player.Name);
+                    
+                }
+                for (int i = Player.PlayersList.Count - 1; i > 0; i--)
+                {
+                    Player.PlayersList[i].DeletePlayer();
                 }
                 Main.BNext_Round.IsEnabled = false;
                 Main.BNext_Talking.IsEnabled = false;
                 Main.BVoting.IsEnabled = false;
 
             }
-
-            CardReload();
+            if( Player.PlayersList.Count > 0) { CardReload(); }
+            
         }
 
         //Мнение одного игрока
@@ -246,5 +251,7 @@ namespace Bunker
                 }
             }
         }
+
+        
     }
 }

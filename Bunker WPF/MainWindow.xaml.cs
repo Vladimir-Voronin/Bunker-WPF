@@ -31,17 +31,86 @@ namespace Bunker_WPF
         //В данной хранится экземпляр запущенной игры
         private Game CurrentGame { get; set; }
 
+        //Словари, с помощью которого можно получить переменную по её текстовому значению
+        public Dictionary<string, TextBox> TextBoxDict { get; set; }
+
+        public Dictionary<string, TextBlock> TextBlockDict { get; set; }
+
+
+
         public MainWindow()
         {
             InitializeComponent();
             BNext_Round.IsEnabled = false;
             BNext_Talking.IsEnabled = false;
             BVoting.IsEnabled = false;
+            
         }
-        
+
+        //Присвоение всех словарей для доступа к XAML по именам
+        private void AssignDict()
+        {
+            TextBoxDict = new Dictionary<string, TextBox>
+            {
+                { "BoxNamePlayer01", BoxNamePlayer01 },
+                { "BoxNamePlayer02", BoxNamePlayer02 },
+                { "BoxNamePlayer03", BoxNamePlayer03 },
+                { "BoxNamePlayer04", BoxNamePlayer04 },
+                { "BoxNamePlayer05", BoxNamePlayer05 },
+                { "BoxNamePlayer06", BoxNamePlayer06 },
+                { "BoxNamePlayer07", BoxNamePlayer07 },
+                { "BoxNamePlayer08", BoxNamePlayer08 },
+                { "BoxNamePlayer09", BoxNamePlayer09 },
+                { "BoxNamePlayer10", BoxNamePlayer10 },
+                { "BoxNamePlayer11", BoxNamePlayer11 },
+                { "BoxNamePlayer12", BoxNamePlayer12 },
+            };
+
+            TextBlockDict = new Dictionary<string, TextBlock>
+            {
+                { "BlockPlayer01", BlockPlayer01 },
+                { "BlockPlayer02", BlockPlayer02 },
+                { "BlockPlayer03", BlockPlayer03 },
+                { "BlockPlayer04", BlockPlayer04 },
+                { "BlockPlayer05", BlockPlayer05 },
+                { "BlockPlayer06", BlockPlayer06 },
+                { "BlockPlayer07", BlockPlayer07 },
+                { "BlockPlayer08", BlockPlayer08 },
+                { "BlockPlayer09", BlockPlayer09 },
+                { "BlockPlayer10", BlockPlayer10 },
+                { "BlockPlayer11", BlockPlayer11 },
+                { "BlockPlayer12", BlockPlayer12 },
+            };
+        }
+
+        //Присваивает имена, после нажатия кнопки "Начать игру"
+        private void AssignNames()
+        {
+            
+
+            foreach (var box in TextBoxDict.Keys)
+            {
+                int i = Int32.Parse(box.Substring(box.Length - 2));
+       
+                try
+                {
+                    if (TextBoxDict[box].Text != "")
+                    {
+                        
+                        Player.PlayersList[i - 1].Name = TextBoxDict[box].Text;
+                    }
+                }
+                catch (Exception)
+                {
+ 
+                }
+   
+            }
+        }
 
         private void New_Game(object sender, RoutedEventArgs e)
         {
+            
             //Все кнопки, которые могли быть отключены - включаются
             BNext_Round.IsEnabled = true;
             BNext_Talking.IsEnabled = true;
@@ -63,13 +132,15 @@ namespace Bunker_WPF
             Game game1 = new Game(this, start, end);
             CurrentGame = game1.StartGame();
 
-            
+            AssignDict();
+            AssignNames();
         }
 
         public void New_Round(object sender, RoutedEventArgs e)
         {
             CurrentGame.StartNewRound();
         }
+
 
         //Используется для присваивания имени игроку
         public void ChangedBoxName(object sender, RoutedEventArgs e)
@@ -78,7 +149,6 @@ namespace Bunker_WPF
             int i = Int32.Parse(tag.Substring(tag.Length - 2));
             try
             {
-                if (Player.PlayersList[i - 1] != null)
                 {
                     Player.PlayersList[i - 1].Name = ((TextBox)e.OriginalSource).Text;
                 }
