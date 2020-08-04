@@ -30,6 +30,12 @@ namespace Bunker
 
         public int RoundNumber { get; set; }
 
+        //Максимальное количество голосов, используется при равенстве макс голосов
+        public int MaxVote { get; set; }
+
+        //проход раунда выживания - если true, значит пройден
+        public bool IsNow { get; set; } = false;
+
         //Флаг-состояния раздачи карт
         public bool dealingcards = false;
 
@@ -111,30 +117,48 @@ namespace Bunker
             return this;
         }
 
-        //Один проход по всем игрокам
-        public void StartNewRound()
+        //Один проход по всем игрокам (surviveround = true раунд выживания)
+        public void StartNewRound(List<Player> playerlist,bool surviveround = false)
         {
+            Main.ChangeEnableSub(false, true, false);
+            Main.ChangeEnable(Main.ButtonVoteDict, false);
+            Main.VoteQuantity = 0;
+            Main.ClearBlocks(Main.BlockVoteQuantityDict);
+            PlayersEndTalk = 0;
             Main.GameProgress.Text = ""; //очищаем чат
-            foreach (var player in Player.PlayersList)
+            Main.BVoting.Content = "Начать голосование";
+
+            if (surviveround == false)
             {
-                player.OnVote = false;
+                foreach (var player in playerlist)
+                {
+                    player.OnVote = false;
+                }
+                Main.ChangeEnable(Main.ButtonExposeDict, true);
+                ResetVotes();
+                Main.IsSurvive = false;
+                RoundNumber++;
+                GameIn?.Invoke($"Начался раунд {RoundNumber}");
             }
-            RoundNumber++;
-            GameIn?.Invoke($"Начался раунд {RoundNumber}");
+            
+            Main.BNext_Talking.Content = $"Ход игрока {playerlist[PlayersEndTalk].Name}";
             //Таймер (подключить отдельно для возможности игры с таймером и без)
             
-            
-            //Проверка на варианты игры - управляемая и автоматическая
-            if (Rule == Rules.Auto)
+            CheckEndGame();
+
+            if (surviveround == false)
             {
-                GameIn?.Invoke("Начинается голосование");
-                Voting(Player.PlayersList);
-                //Обработка результатов голосования (передается список игроков, над которыми будет работать алгоритм)
-                List<Player> tosurvive = ToSurvive(Player.PlayersList);
-                DeleteOrSurviveRound(tosurvive);
+                if (playerlist.Count > 0)
+                {
+                    CardReload();
+                    PrintCard();
+                }
             }
-            
-            //Проверка на конец игры
+        }
+
+        //Проверка на конец игры
+        public void CheckEndGame()
+        {
             if (Player.PlayersList.Count <= PlayersToEnd)
             {
                 GameIn?.Invoke("Игра окончена");
@@ -144,13 +168,7 @@ namespace Bunker
                     GameIn?.Invoke(player.Name);
                 }
                 Player.DeleteAllPlayers();
-                Main.ChangeEnableSub(false);
-            }
-
-            if( Player.PlayersList.Count > 0) 
-            { 
-                CardReload();
-                PrintCard();
+                Main.ChangeEnableSub(false, false, false);
             }
         }
 
@@ -162,16 +180,55 @@ namespace Bunker
             {
                 //Таймер
             }
-
-            if(PlayersEndTalk < Player.PlayersList.Count)
+            //Для всех игроков
+            if(onvote == false)
             {
-                GameIn?.Invoke($"Ход игрока {Player.PlayersList[PlayersEndTalk].Name}");
-                PlayersEndTalk++;
+                if (PlayersEndTalk < Player.PlayersList.Count)
+                {
+                    if (PlayersEndTalk + 1 < Player.PlayersList.Count)
+                    {
+                        Main.BNext_Talking.Content = $"Ход игрока {Player.PlayersList[PlayersEndTalk + 1].Name}";
+                    }
+                    else if (PlayersEndTalk + 1 == Player.PlayersList.Count)
+                    {
+                        Main.BNext_Talking.IsEnabled = false;
+                        Main.BNext_Talking.Content = $"Ход следующего игрока";
+                        Main.ChangeEnableSub(false, false, true);
+                        Main.BVoting.IsEnabled = true;
+                    }
+                    PlayersEndTalk++;
+                }
             }
-            else if(PlayersEndTalk == Player.PlayersList.Count)
+            //Раунд выживаемых
+            else 
             {
-                Main.BNext_Talking.IsEnabled = false;
+                List<Player> survivors = new List<Player>();
+                foreach (var player in Player.PlayersList)
+                {
+                    if(player.OnVote == true)
+                    {
+                        survivors.Add(player);
+                    }
+                }
+
+                ResetVotes();
                 
+                if (PlayersEndTalk < survivors.Count)
+                {
+                    if (PlayersEndTalk + 1 < survivors.Count)
+                    {
+                        Main.BNext_Talking.Content = $"Ход игрока {survivors[PlayersEndTalk + 1].Name}";
+                    }
+                    if (PlayersEndTalk + 1 == survivors.Count)
+                    {
+                        Main.BNext_Talking.IsEnabled = false;
+                        Main.BNext_Talking.Content = "Ход следующего игрока";
+                        Main.ChangeEnableSub(false, false, true);
+                        //Main.BVoting.Content = "Начать голосование";
+                        Main.BVoting.IsEnabled = true;
+                    }
+                    PlayersEndTalk++;
+                }
             }
         }
 
@@ -180,55 +237,78 @@ namespace Bunker
         {
             List<Player> tosurvive = new List<Player>();
             int current = 0;
-            int max = 0;
+            MaxVote = 0;
             foreach (var player in Players)
             {
                 current = player.Vote;
-                if (current > max)
+                if (current > MaxVote)
                 {
-                    max = current;
+                    MaxVote = current;
                     tosurvive.Clear();
                     tosurvive.Add(player);
                 }
-                else if (current == max)
+                else if (current == MaxVote)
                 {
                     tosurvive.Add(player);
                 }
             }
-            GameIn?.Invoke($"Максимальное количество голосов: {max}.");
+            GameIn?.Invoke($"Максимальное количество голосов: {MaxVote}");
             return tosurvive;
         }
-
 
         //Метод просматривает количество голосов, если есть лидер, то исключает его
         //Если таких игроков несколько, то проводит второй круг между игроками борющимися за выживание
         public void DeleteOrSurviveRound(List<Player> tosurvive)
         {
-            if (tosurvive.Count == 1)
+            if(tosurvive.Count == 0)
             {
-                GameIn?.Invoke($"Игрок {tosurvive[0].Name} покидает игру");
-                tosurvive[0].DeletePlayer();
-                tosurvive.Remove(tosurvive[0]);
+
             }
-            else
+            else if (tosurvive.Count == 1)
+            {
+                DeletePlayerByVotes(tosurvive);
+            }
+            else if(IsNow == false)
             {
                 foreach (var player in tosurvive)
                 {
-                    Talking(true);
+                    if(player.Vote != MaxVote)
+                    {
+                        tosurvive.Remove(player);
+                    }
                 }
-
-                Voting(tosurvive);
-                List<Player> result = ToSurvive(tosurvive);
-
-                foreach (var player in result)
-                {
-                    GameIn?.Invoke($"Игрок {player.Name} покидает игру");
-                    player.DeletePlayer();
-                }
+                Main.IsSurvive = true;
+                StartNewRound(tosurvive, Main.IsSurvive);
+                IsNow = true;
+                Main.BVoting.Content = "Начать голосование";
             }
-            
+            else if (IsNow == true)
+            {
+                if(tosurvive[0].Vote != 0)
+                {
+                    foreach (var player in tosurvive)
+                    {
+                        player.DeletePlayer();
+                        GameIn?.Invoke($"Игрок {player.Name} покидает игру");
+                        Main.TextBlockDict["BlockPlayer" + player.Quanity.ToString()].Text = "";
+                        MaxVote = 0;
+                    }
+                }
+                Main.BNext_Talking.Content = "Ход следующего игрока";
+                Main.IsSurvive = false;
+                Main.ChangeEnableSub(true, false, false);
+            }
         }
 
+        public void DeletePlayerByVotes(List<Player> tosurvive)
+        {
+            GameIn?.Invoke($"Игрок {tosurvive[0].Name} покидает игру");
+            tosurvive[0].DeletePlayer();
+            Main.TextBlockDict["BlockPlayer" + tosurvive[0].Quanity.ToString()].Text = "";
+            Main.ChangeEnableSub(true, false, false);
+            MaxVote = 0;
+        }
+        //Сброс всех голосов до 0
         public void ResetVotes()
         {
             foreach (var player in Player.PlayersList)
@@ -236,10 +316,13 @@ namespace Bunker
                 player.Vote = 0;
             }
         }
+
         //Голосование за исключение (слишком много вариантов реализации)
         public void Voting(List<Player> Players)
         {
-            
+            Main.IsSurvive = false;
+            List<Player> tosurvive = ToSurvive(Players);
+            DeleteOrSurviveRound(tosurvive);
         }
 
         public void CardReload(bool startgame = false)
@@ -248,11 +331,22 @@ namespace Bunker
             {
                 if (startgame) { player.IsAlive = true; }
 
-                //Открытие всех позиций, соотвтествующих уровню LevelAdd
-                foreach (Position pos in player.PlayerCard.allpositions)
+                if(RoundNumber == 0 || RoundNumber == 1)
                 {
-                    if (pos.Levelhide <= LevelAdd + RoundNumber) { pos.Open = true; }
+                    foreach (Position pos in player.PlayerCard.allpositions)
+                    {
+                        if (pos.Levelhide <= LevelAdd) { pos.Open = true; }
+                    }
                 }
+                else
+                {
+                    foreach (Position pos in player.PlayerCard.allpositions)
+                    {
+                        if (pos.Levelhide <= LevelAdd + RoundNumber - 1) { pos.Open = true; }
+                    }
+                }
+                //Открытие всех позиций, соотвтествующих уровню LevelAdd
+                
             }
         }
 

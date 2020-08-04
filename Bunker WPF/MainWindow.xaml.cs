@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Bunker;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Bunker_WPF
 {
@@ -25,7 +27,10 @@ namespace Bunker_WPF
         private Game CurrentGame { get; set; }
 
         //Общее количество голосов, отданное в раунде
-        private int VoteQuantity { get; set; }
+        public int VoteQuantity { get; set; }
+
+        //становится true в раундах на выживание
+        public bool IsSurvive { get; set; }
 
         //Словари, с помощью которого можно получить переменную по её текстовому значению
         public Dictionary<string, TextBox> TextBoxDict { get; set; }
@@ -42,14 +47,17 @@ namespace Bunker_WPF
 
         public Dictionary<string, TextBlock> BlockVoteQuantityDict { get; set; }
 
+        
         public MainWindow()
         {
             InitializeComponent();
             AssignDict();
-            ChangeEnableSub(false);
+            ChangeEnableSub(false, false, false);
             ChangeEnable(ButtonVoteDict, false);
             ChangeEnable(ButtonExposeDict, false);
         }
+
+        
 
         //Присвоение всех словарей для доступа к XAML по именам
         private void AssignDict()
@@ -162,12 +170,9 @@ namespace Bunker_WPF
         //Метод включает доступ к кнопкам живых игроков
         public void ChangeEnable(Dictionary<string,Button> dict, bool isenab)
         {
-            List<string> quant = new List<string>();
-
             List<string> quantwithzero = new List<string>();
             foreach (var player in Player.PlayersList)
             {
-                quant.Add(player.Quanity.ToString());
                 if(player.Quanity < 10)
                 {
                     quantwithzero.Add("0" + player.Quanity.ToString());
@@ -177,8 +182,6 @@ namespace Bunker_WPF
                     quantwithzero.Add(player.Quanity.ToString());
                 }
             }
-
-            
 
             foreach (var key in dict.Keys)
             {
@@ -193,12 +196,11 @@ namespace Bunker_WPF
             }
         }
 
-        public void ChangeEnableSub(bool isenab)
+        public void ChangeEnableSub(bool next_round, bool next_talking, bool voting)
         {
-            foreach (var key in ButtonSubDict.Keys)
-            {
-                ButtonSubDict[key].IsEnabled = isenab;
-            }
+            BNext_Round.IsEnabled = next_round;
+            BNext_Talking.IsEnabled = next_talking;
+            BVoting.IsEnabled = voting;
         }
         public void ClearBlocks(Dictionary<string,TextBlock> dict)
         {
@@ -248,10 +250,12 @@ namespace Bunker_WPF
             GameProgress.Text = "";
             AdditionallyСondition.Text = "";
             ClearBlocks(BlockVoteQuantityDict);
+            BVoting.Content = "Начать голосование";
 
             //Все кнопки, которые могли быть отключены - включаются
-            ChangeEnableSub(true);
+            ChangeEnableSub(true, false, false);
             ChangeEnable(ButtonVoteDict, false);
+            BNew_Condition.IsEnabled = true;
 
             int number;
             int start;
@@ -280,13 +284,7 @@ namespace Bunker_WPF
 
         public void New_Round(object sender, RoutedEventArgs e)
         {
-            ChangeEnableSub(true);
-            ChangeEnable(ButtonExposeDict, true);
-            ChangeEnable(ButtonVoteDict, false);
-            VoteQuantity = 0;
-            ClearBlocks(BlockVoteQuantityDict);
-            CurrentGame.ResetVotes();
-            CurrentGame.StartNewRound();
+            CurrentGame.StartNewRound(Player.PlayersList);
         }
 
 
@@ -305,22 +303,80 @@ namespace Bunker_WPF
             {
 
             }
-        
         }
 
         private void Next_Player_Talking(object sender, RoutedEventArgs e)
         {
             if(CurrentGame.RoundNumber != 0)
             {
-                CurrentGame.Talking(false);
+                CurrentGame.Talking(IsSurvive);
             }
         }
 
         private void Voting_On(object sender, RoutedEventArgs e)
         {
-            ChangeEnable(ButtonVoteDict, true);
-            ChangeEnable(ButtonExposeDict, false);
-            CurrentGame.Voting(CurrentGame.PlayersToVote);
+            //Все варианты развития голосования
+            if (BVoting.Content.ToString() == "Начать голосование")
+            {
+                int i = 0;
+                foreach (var player in Player.PlayersList)
+                {
+                    if (player.OnVote) { i++; }
+                }
+                if(i==0)
+                {
+                    CurrentGame.PrintMes("Никто не был выставлен на голосование, переход к следующему раунду");
+                    ChangeEnableSub(true, false, false);
+                }
+                else
+                {
+                    //Доступ к голосованию только по выставленным игрокам
+                    ChangeEnable(ButtonVoteDict, true);
+                    foreach (var player in Player.PlayersList)
+                    {
+                        if (!player.OnVote)
+                        {
+                            if (player.Quanity < 10)
+                            {
+                                ButtonVoteDict["BVote" + "0" + player.Quanity.ToString()].IsEnabled = false;
+                            }
+                            else
+                            {
+                                ButtonVoteDict["BVote" + player.Quanity.ToString()].IsEnabled = false;
+                            }
+                        }
+                    }
+                    List<Player> tosurvive = new List<Player>();
+                    foreach (var player in Player.PlayersList)
+                    {
+                        if (player.OnVote) { tosurvive.Add(player); }
+                    }
+                    if (tosurvive.Count == 1) { CurrentGame.DeletePlayerByVotes(tosurvive); }
+                    ChangeEnable(ButtonExposeDict, false);
+                }
+                
+            }
+            else if(IsSurvive == true)
+            {
+                ChangeEnable(ButtonExposeDict, false);
+                bool now = CurrentGame.IsNow;
+                CurrentGame.Voting(Player.PlayersList);
+                if(now == true)
+                {
+                    ChangeEnableSub(true, false, false);
+                }
+                else
+                {
+                    ChangeEnableSub(false, true, false);
+                }
+                
+            }
+            else if(IsSurvive == false)
+            {
+                List<Player> tosurvive = CurrentGame.ToSurvive(Player.PlayersList);
+                CurrentGame.DeleteOrSurviveRound(tosurvive);
+                ChangeEnableSub(true, false, false);
+            }
         }
 
         public void VotePlayer(object sender, RoutedEventArgs e)
@@ -342,7 +398,11 @@ namespace Bunker_WPF
             }
             if(VoteQuantity == Player.PlayersList.Count)
             {
-                //Обработка и исключение, либо переход в раунд выживания
+                if(CurrentGame.ToSurvive(Player.PlayersList).Count > 1)
+                {
+                    IsSurvive = true;
+                }
+                BVoting.Content = "Закончить голосование";
             }
         }
 
@@ -355,11 +415,11 @@ namespace Bunker_WPF
                 if(player.Quanity == i)
                 {
                     player.DeletePlayer();
-                    string number = i.ToString();
-                    TextBlockDict["BlockPlayer" + number].Text = "";
+                    TextBlockDict["BlockPlayer" + player.Quanity.ToString()].Text = "";
                     break;
                 }
             }
+            CurrentGame.CheckEndGame();
         }
 
         private void ExposePlayer(object sender, RoutedEventArgs e)
@@ -390,6 +450,7 @@ namespace Bunker_WPF
             {
                 AdditionallyСondition.Text += CurrentGame.Cataclysm.Card2;
                 CurrentGame.Cataclysm.FlagZeroToOne++;
+                BNew_Condition.IsEnabled = false;
             }
         }
     }

@@ -38,7 +38,7 @@
 
         <Border BorderBrush="#FF0046FF" BorderThickness="6"
                 CornerRadius="10" Background="#FFEEFFF7"
-                HorizontalAlignment="Center" Width="292" Grid.Row="2" Grid.Column="2" Margin="10,37,11,15">
+                HorizontalAlignment="Center" Width="292" Grid.Row="2" Grid.Column="2" Margin="10,37,11,76">
             <TextBlock x:Name="AdditionallyСondition"  FontSize="14" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" Width="292" Grid.Column="1" Padding="15,8,20,10" Margin="-6"/>
         </Border>
 
@@ -150,9 +150,9 @@
         <TextBox x:Name="BoxNamePlayer12" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,10,63,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" Grid.Row="1" Grid.Column="5" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
 
         <Button x:Name="BNew_Game" Content="Начать новую игру" Style ="{DynamicResource MaterialDesignRaisedLightButton}" Grid.Column="7" HorizontalAlignment="Left" Margin="137,254,0,0" Grid.Row="2" VerticalAlignment="Top" Width="164" Click="New_Game" RenderTransformOrigin="0.5,0.5" Height="44"/>
-        <Button x:Name="BNext_Round" Content="Перейти в следующий раунд" Style ="{StaticResource MaterialDesignRaisedLightButton}" Grid.Column="3" HorizontalAlignment="Left" Margin="22,106,0,0" Grid.Row="2" VerticalAlignment="Top" Width="273" Click="New_Round" Background="#FFEAA367"/>
+        <Button x:Name="BNext_Round" Content="Перейти в следующий раунд" Style ="{StaticResource MaterialDesignRaisedLightButton}" Grid.Column="3" HorizontalAlignment="Left" Margin="22,125,0,0" Grid.Row="2" VerticalAlignment="Top" Width="273" Click="New_Round" Background="#FFEAA367"/>
         <Button x:Name="BNext_Talking" Content="Ход следующего игрока" Style ="{StaticResource MaterialDesignRaisedLightButton}" Grid.Column="3" HorizontalAlignment="Left" Margin="22,204,0,0" Grid.Row="2" VerticalAlignment="Top" Width="273" Click="Next_Player_Talking" Background="#FFEAA367"/>
-        <Button x:Name="BVoting" Content="Голосование" Grid.Column="3" Style ="{StaticResource MaterialDesignRaisedLightButton}" HorizontalAlignment="Left" Margin="22,252,0,0" Grid.Row="2" VerticalAlignment="Top" Width="273" Click="Voting_On" Background="#FFEAA367"/>
+        <Button x:Name="BVoting" Content="Начать голосование" Grid.Column="3" Style ="{StaticResource MaterialDesignRaisedLightButton}" HorizontalAlignment="Left" Margin="22,252,0,0" Grid.Row="2" VerticalAlignment="Top" Width="273" Click="Voting_On" Background="#FFEAA367"/>
 
         <Button x:Name="BDelete01"  Content="D" Style ="{StaticResource MaterialDesignRaisedLightButton}" Click="DeletePlayer" HorizontalAlignment="Left" Margin="265,12,0,0" VerticalAlignment="Top" Width="31" Height="27" Background="Red" Padding="0,4"/>
         <Button x:Name="BDelete02"  Content="D" Style ="{StaticResource MaterialDesignRaisedLightButton}" Click="DeletePlayer" HorizontalAlignment="Left" Margin="265,12,0,0" VerticalAlignment="Top" Width="31" Height="27" Background="Red" Padding="0,4" Grid.Column="1"/>
@@ -201,7 +201,7 @@
         <TextBox x:Name="LiveAddBox" Grid.Column="5" HorizontalAlignment="Left" Height="18" Margin="279,126,0,0" Grid.Row="2" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="22"/>
         <TextBlock Grid.Column="5" HorizontalAlignment="Left" Margin="230,126,0,0" Grid.Row="2" TextWrapping="Wrap" Text="LiveAdd:" VerticalAlignment="Top" Height="20" Width="44"/>
         <TextBlock Grid.Column="2" TextAlignment="Center" HorizontalAlignment="Left" Margin="25,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Дополнительные условия" VerticalAlignment="Top" Width="271" Height="22"/>
-        <Button x:Name="BNew_Condition" Content="Показать дополнительное условие" Style ="{StaticResource MaterialDesignRaisedLightButton}" Grid.Column="3" HorizontalAlignment="Left" Margin="22,156,0,0" Grid.Row="2" VerticalAlignment="Top" Width="273" Click="New_Condition" Background="#FFEAA367"/>
+        <Button x:Name="BNew_Condition" Content="Показать дополнительное условие" Style ="{StaticResource MaterialDesignRaisedLightButton}" Grid.Column="2" HorizontalAlignment="Left" Margin="18,260,0,0" Grid.Row="2" VerticalAlignment="Top" Width="273" Click="New_Condition" Background="#FFEAA367"/>
 
         <TextBlock Name="BlockVoteQuantity1" HorizontalAlignment="Left" Margin="112,314,0,0" TextWrapping="Wrap" FontSize="14" TextAlignment="Center" VerticalAlignment="Top" Height="20" Width="22" Text=""/>
         <TextBlock Name="BlockVoteQuantity2" HorizontalAlignment="Left" Margin="112,314,0,0" TextWrapping="Wrap" FontSize="14" TextAlignment="Center" VerticalAlignment="Top" Height="20" Width="22" Text="" Grid.Column="1"/>
