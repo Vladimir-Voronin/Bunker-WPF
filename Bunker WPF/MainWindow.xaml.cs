@@ -55,6 +55,8 @@ namespace Bunker_WPF
             ChangeEnableSub(false, false, false);
             ChangeEnable(ButtonVoteDict, false);
             ChangeEnable(ButtonExposeDict, false);
+            ChangeEnable(ButtonDeleteDict, false);
+            BNew_Condition.IsEnabled = false;
         }
 
         
@@ -279,6 +281,7 @@ namespace Bunker_WPF
 
             CurrentGame = game1.StartGame();
 
+            ChangeEnable(ButtonDeleteDict, true);
             AssignNames();
         }
 
@@ -452,6 +455,16 @@ namespace Bunker_WPF
                 CurrentGame.Cataclysm.FlagZeroToOne++;
                 BNew_Condition.IsEnabled = false;
             }
+        }
+
+        private void LiveAddBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void HowManyPlayers_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 

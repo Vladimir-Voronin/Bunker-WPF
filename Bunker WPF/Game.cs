@@ -122,6 +122,9 @@ namespace Bunker
         {
             Main.ChangeEnableSub(false, true, false);
             Main.ChangeEnable(Main.ButtonVoteDict, false);
+
+            Main.ChangeEnable(Main.ButtonDeleteDict, false);
+            Main.ChangeEnable(Main.ButtonDeleteDict, true);
             Main.VoteQuantity = 0;
             Main.ClearBlocks(Main.BlockVoteQuantityDict);
             PlayersEndTalk = 0;

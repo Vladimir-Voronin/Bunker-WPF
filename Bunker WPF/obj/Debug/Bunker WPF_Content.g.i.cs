@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bunker.sln")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/bunker.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/table2.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/table3.jpg")]
 
 
