@@ -33,6 +33,9 @@ namespace Bunker
         //Флаг-состояния раздачи карт
         public bool dealingcards = false;
 
+        //Количество игроков, окончивших свою речь
+        public int PlayersEndTalk { get; set; }
+
         //Список игроков, выставленных на голосование
         public List<Player> PlayersToVote { get; set; }
 
@@ -119,16 +122,9 @@ namespace Bunker
             RoundNumber++;
             GameIn?.Invoke($"Начался раунд {RoundNumber}");
             //Таймер (подключить отдельно для возможности игры с таймером и без)
-            foreach (var player in Player.PlayersList)
-            {
-                if (player.IsAlive)
-                {
-                    Talking(player);
-                }
-            }
             
-
-            //
+            
+            //Проверка на варианты игры - управляемая и автоматическая
             if (Rule == Rules.Auto)
             {
                 GameIn?.Invoke("Начинается голосование");
@@ -138,7 +134,6 @@ namespace Bunker
                 DeleteOrSurviveRound(tosurvive);
             }
             
-
             //Проверка на конец игры
             if (Player.PlayersList.Count <= PlayersToEnd)
             {
@@ -147,14 +142,9 @@ namespace Bunker
                 foreach (var player in Player.PlayersList)
                 {
                     GameIn?.Invoke(player.Name);
-                    
                 }
                 Player.DeleteAllPlayers();
-                Main.BNext_Round.IsEnabled = false;
-                Main.BNext_Talking.IsEnabled = false;
-                Main.BVoting.IsEnabled = false;
-                Main.BNew_Condition.IsEnabled = false;
-
+                Main.ChangeEnableSub(false);
             }
 
             if( Player.PlayersList.Count > 0) 
@@ -162,19 +152,26 @@ namespace Bunker
                 CardReload();
                 PrintCard();
             }
-            
         }
 
-        //Мнение одного игрока
-        public void Talking(Player player)
+        //Мнение одного игрока, onvote - true, если идет борьба за выживания между несколькими игроками
+        //с одинаковым количеством голосов
+        public void Talking(bool onvote)
         {
             if (this.TimeTalkAlive != 0)
             {
                 //Таймер
             }
-            else
+
+            if(PlayersEndTalk < Player.PlayersList.Count)
             {
-                //по указанию ведущего (по кнопке)
+                GameIn?.Invoke($"Ход игрока {Player.PlayersList[PlayersEndTalk].Name}");
+                PlayersEndTalk++;
+            }
+            else if(PlayersEndTalk == Player.PlayersList.Count)
+            {
+                Main.BNext_Talking.IsEnabled = false;
+                
             }
         }
 
@@ -198,7 +195,6 @@ namespace Bunker
                     tosurvive.Add(player);
                 }
             }
-
             GameIn?.Invoke($"Максимальное количество голосов: {max}.");
             return tosurvive;
         }
@@ -218,10 +214,12 @@ namespace Bunker
             {
                 foreach (var player in tosurvive)
                 {
-                    Talking(player);
+                    Talking(true);
                 }
+
                 Voting(tosurvive);
                 List<Player> result = ToSurvive(tosurvive);
+
                 foreach (var player in result)
                 {
                     GameIn?.Invoke($"Игрок {player.Name} покидает игру");
@@ -231,10 +229,16 @@ namespace Bunker
             
         }
 
+        public void ResetVotes()
+        {
+            foreach (var player in Player.PlayersList)
+            {
+                player.Vote = 0;
+            }
+        }
         //Голосование за исключение (слишком много вариантов реализации)
         public void Voting(List<Player> Players)
         {
-
             
         }
 
@@ -256,7 +260,6 @@ namespace Bunker
         {
             foreach (Player player in Player.PlayersList)
             {
-                
                 string name = "BlockPlayer" + player.Quanity.ToString();
                 TextBlock block = Main.TextBlockDict[name];
 

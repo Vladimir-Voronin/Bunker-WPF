@@ -43,7 +43,6 @@ namespace Bunker
 
         public static string DiscoverPositionType(string file)
         {
-           
             if(file.ToString() == "gender.txt")
             {
                 return "Пол: ";
@@ -84,15 +83,14 @@ namespace Bunker
             {
                 return "Багаж: ";
             }
-            if (file.ToString() == "card1.txt")
-            {
-                return "Карта 1: ";
-            }
-            if (file.ToString() == "card2.txt")
-            {
-                return "Карта 2: ";
-            }
-
+            //if (file.ToString() == "card1.txt")
+            //{
+            //    return "Карта 1: ";
+            //}
+            //if (file.ToString() == "card2.txt")
+            //{
+            //    return "Карта 2: ";
+            //}
             return "";
         }
     }
