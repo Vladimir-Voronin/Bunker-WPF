@@ -1,0 +1,21 @@
+D:\Bunker WPF\Bunker WPF\obj\Release\MainWindow.g.cs
+D:\Bunker WPF\Bunker WPF\obj\Release\App.g.cs
+D:\Bunker WPF\Bunker WPF\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF_MarkupCompile.cache
+D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF_MarkupCompile.lref
+D:\Bunker WPF\Bunker WPF\bin\Release\Bunker WPF.exe.config
+D:\Bunker WPF\Bunker WPF\bin\Release\Bunker WPF.exe
+D:\Bunker WPF\Bunker WPF\bin\Release\Bunker WPF.pdb
+D:\Bunker WPF\Bunker WPF\bin\Release\MaterialDesignColors.dll
+D:\Bunker WPF\Bunker WPF\bin\Release\MaterialDesignThemes.Wpf.dll
+D:\Bunker WPF\Bunker WPF\bin\Release\MaterialDesignColors.pdb
+D:\Bunker WPF\Bunker WPF\bin\Release\MaterialDesignThemes.Wpf.pdb
+D:\Bunker WPF\Bunker WPF\bin\Release\MaterialDesignThemes.Wpf.xml
+D:\Bunker WPF\Bunker WPF\obj\Release\App.baml
+D:\Bunker WPF\Bunker WPF\obj\Release\MainWindow.baml
+D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF.g.resources
+D:\Bunker WPF\Bunker WPF\obj\Release\Bunker_WPF.Properties.Resources.resources
+D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF.csproj.GenerateResource.cache
+D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF.csproj.CopyComplete
+D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF.exe
+D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF.pdb

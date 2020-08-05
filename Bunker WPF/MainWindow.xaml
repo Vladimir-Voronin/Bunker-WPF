@@ -137,15 +137,20 @@
             <TextBlock Name ="GameProgress" Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Width="292" Padding="14,8,20,16" Margin="-6,-6,-6,4"/>
         </Border>
 
-        <TextBlock Name="TimerBlock"
-                   Margin="86,15,62,213"
-                   HorizontalAlignment="Center"
+        <Border BorderBrush="#FF898989" BorderThickness="6"
+                CornerRadius="10" Background="#FFE8E8E8"
+                HorizontalAlignment="Center" Width="148" Grid.Column="3" Grid.Row="2" Margin="83,11,82,208">
+            <TextBlock Name="TimerBlock"
+                   Margin="4,-6,0,4"
+                   HorizontalAlignment="Left"
                    VerticalAlignment="Center"
+                   TextAlignment="Center"
                    FontSize="64"
                    Text="{Binding TickCounter,
                                   RelativeSource={RelativeSource FindAncestor,
                                                                  AncestorType={x:Type local:MainWindow}}}"
-                   TextWrapping="Wrap" Grid.Row="2" Grid.Column="3" Width="165" />
+                   TextWrapping="Wrap" Grid.Row="2" Grid.Column="3" Width="128" Height="83" />
+        </Border>
 
         <TextBox x:Name="BoxNamePlayer01" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="12,10,62,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
         <TextBox x:Name="BoxNamePlayer02" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,10,63,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14" Grid.Column="1"/>
