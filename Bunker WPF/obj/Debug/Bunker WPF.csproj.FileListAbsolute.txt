@@ -19,3 +19,4 @@ D:\Bunker WPF\Bunker WPF\bin\Debug\MaterialDesignThemes.Wpf.pdb
 D:\Bunker WPF\Bunker WPF\bin\Debug\MaterialDesignThemes.Wpf.xml
 D:\Bunker WPF\Bunker WPF\obj\Debug\Bunker WPF.csproj.CopyComplete
 D:\Bunker WPF\Bunker WPF\obj\Debug\App.baml
+D:\Bunker WPF\Bunker WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs

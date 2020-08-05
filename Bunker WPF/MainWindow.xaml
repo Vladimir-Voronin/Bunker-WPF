@@ -137,7 +137,15 @@
             <TextBlock Name ="GameProgress" Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Width="292" Padding="14,8,20,16" Margin="-6,-6,-6,4"/>
         </Border>
 
-
+        <TextBlock Name="TimerBlock"
+                   Margin="86,15,62,213"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="64"
+                   Text="{Binding TickCounter,
+                                  RelativeSource={RelativeSource FindAncestor,
+                                                                 AncestorType={x:Type local:MainWindow}}}"
+                   TextWrapping="Wrap" Grid.Row="2" Grid.Column="3" Width="165" />
 
         <TextBox x:Name="BoxNamePlayer01" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="12,10,62,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14"/>
         <TextBox x:Name="BoxNamePlayer02" TextAlignment="Center" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" HorizontalAlignment="Center" Margin="11,10,63,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="240" TextChanged="ChangedBoxName" Padding="0,-7" ScrollViewer.CanContentScroll="True" FontFamily="Tahoma" FontSize="14" Grid.Column="1"/>
@@ -213,20 +221,44 @@
 
         <Border BorderBrush="#FFFB0000" BorderThickness="2"
                 CornerRadius="2" Background="#FFE8E8E8"
+                HorizontalAlignment="Center" Width="216" Grid.Column="5" Grid.Row="2" Margin="38,19,60,260">
+            <TextBlock Grid.Column="5" HorizontalAlignment="Left" Margin="8,0,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="196" FontSize="14" TextAlignment="Right" Padding="0,0,4,0"><Run Text="Время "/><Run Text="на ход:"/></TextBlock>
+        </Border>
+
+        <Border BorderBrush="#FFFB0000" BorderThickness="2"
+                CornerRadius="2" Background="#FFE8E8E8"
+                HorizontalAlignment="Center" Width="34" Grid.Column="5" Grid.Row="2" Margin="270,18,10,261">
+            <TextBox x:Name="TimeBoxAlive" Grid.Column="5" HorizontalAlignment="Left" Height="21" Margin="3,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="60" VerticalAlignment="Top" Width="24" FontSize="14" TextAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        </Border>
+
+        <Border BorderBrush="#FFFB0000" BorderThickness="2"
+                CornerRadius="2" Background="#FFE8E8E8"
+                HorizontalAlignment="Center" Width="212" Grid.Column="5" Grid.Row="2" Margin="42,60,60,219">
+            <TextBlock Grid.Column="5" HorizontalAlignment="Left" Margin="-2,1,-1,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="211" FontSize="14" TextAlignment="Right" Padding="0,0,4,0"><Run Text="В"/><Run Text="ремя "/><Run Text="в раунде на выживание"/><Run Text=":"/></TextBlock>
+        </Border>
+
+        <Border BorderBrush="#FFFB0000" BorderThickness="2"
+                CornerRadius="2" Background="#FFE8E8E8"
+                HorizontalAlignment="Center" Width="34" Grid.Column="5" Grid.Row="2" Margin="270,59,10,220">
+            <TextBox x:Name="TimeBoxSurvive" Grid.Column="5" HorizontalAlignment="Left" Height="21" Margin="3,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="24" FontSize="14" TextAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        </Border>
+
+        <Border BorderBrush="#FFFB0000" BorderThickness="2"
+                CornerRadius="2" Background="#FFE8E8E8"
                 HorizontalAlignment="Center" Width="36" Grid.Column="5" Grid.Row="2" Margin="270,204,8,72">
-            <TextBox x:Name="HowManyPlayers" Grid.Column="5" HorizontalAlignment="Left" Height="20" Grid.Row="2" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Width="24" FontSize="14" TextAlignment="Center" Background="{x:Null}" TextChanged="LiveAddBox_TextChanged" Margin="4,2,0,0" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="HowManyPlayers" Grid.Column="5" HorizontalAlignment="Left" Height="20" Grid.Row="2" TextWrapping="Wrap" Text="4" VerticalAlignment="Top" Width="24" FontSize="14" TextAlignment="Center" Background="{x:Null}" Margin="4,2,0,0" BorderBrush="{x:Null}"/>
         </Border>
 
         <Border BorderBrush="#FFFB0000" BorderThickness="2"
                 CornerRadius="2" Background="#FFE8E8E8"
                 HorizontalAlignment="Center" Width="36" Grid.Column="5" Grid.Row="2" Margin="270,148,8,131">
-            <TextBox x:Name="PlayersForEndingGame" Grid.Column="5" HorizontalAlignment="Left" Height="21" Margin="3,1,0,0" Grid.Row="2" TextWrapping="Wrap" Text="8" VerticalAlignment="Top" Width="26" FontSize="14" TextAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="PlayersForEndingGame" Grid.Column="5" HorizontalAlignment="Left" Height="21" Margin="3,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="8" VerticalAlignment="Top" Width="26" FontSize="14" TextAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
         </Border>
 
         <Border BorderBrush="#FFFB0000" BorderThickness="2"
                 CornerRadius="2" Background="#FFE8E8E8"
-                HorizontalAlignment="Center" Width="34" Grid.Column="5" Grid.Row="2" Margin="270,93,10,186">
-            <TextBox x:Name="LiveAddBox" Grid.Column="5" HorizontalAlignment="Left" Height="21" Margin="3,1,0,0" Grid.Row="2" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="24" FontSize="14" TextAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" TextChanged="HowManyPlayers_TextChanged"/>
+                HorizontalAlignment="Center" Width="34" Grid.Column="5" Grid.Row="2" Margin="270,101,10,178">
+            <TextBox x:Name="LiveAddBox" Grid.Column="5" HorizontalAlignment="Left" Height="21" Margin="3,1,0,0" Grid.Row="2" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="24" FontSize="14" TextAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}"/>
         </Border>
 
         <Border BorderBrush="#FFFB0000" BorderThickness="2"
@@ -237,13 +269,13 @@
 
         <Border BorderBrush="#FFFB0000" BorderThickness="2"
                 CornerRadius="2" Background="#FFE8E8E8"
-                HorizontalAlignment="Center" Width="236" Grid.Column="5" Grid.Row="2" Margin="18,148,60,131">
-            <TextBlock Grid.Column="5" HorizontalAlignment="Left" Margin="32,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Укажите количество игроков:" VerticalAlignment="Top" Height="21" Width="198" FontSize="14" TextAlignment="Right" Padding="0,0,4,0"/>
+                HorizontalAlignment="Center" Width="216" Grid.Column="5" Grid.Row="2" Margin="38,148,60,131">
+            <TextBlock Grid.Column="5" HorizontalAlignment="Left" Margin="8,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Укажите количество игроков:" VerticalAlignment="Top" Height="21" Width="196" FontSize="14" TextAlignment="Right" Padding="0,0,4,0"/>
         </Border>
 
         <Border BorderBrush="#FFFB0000" BorderThickness="2"
                 CornerRadius="2" Background="#FFE8E8E8"
-                HorizontalAlignment="Center" Width="80" Grid.Column="5" Grid.Row="2" Margin="174,93,60,186">
+                HorizontalAlignment="Center" Width="80" Grid.Column="5" Grid.Row="2" Margin="174,101,60,178">
             <TextBlock Grid.Column="5" Margin="4,2,1,0" Grid.Row="2" TextWrapping="Wrap" Text="LiveAdd:" VerticalAlignment="Top" Height="23" FontSize="14" TextAlignment="Right" Padding="0,0,4,0"/>
         </Border>
 

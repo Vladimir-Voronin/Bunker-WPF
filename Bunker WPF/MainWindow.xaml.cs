@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Bunker;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Threading;
 
 namespace Bunker_WPF
 {
@@ -47,7 +48,12 @@ namespace Bunker_WPF
 
         public Dictionary<string, TextBlock> BlockVoteQuantityDict { get; set; }
 
-        
+
+        public DispatcherTimer timer;
+
+        public static readonly DependencyProperty TickCounterProperty = DependencyProperty.Register(
+            "TickCounter", typeof(int), typeof(MainWindow), new PropertyMetadata(default(int)));
+
         public MainWindow()
         {
             InitializeComponent();
@@ -57,9 +63,24 @@ namespace Bunker_WPF
             ChangeEnable(ButtonExposeDict, false);
             ChangeEnable(ButtonDeleteDict, false);
             BNew_Condition.IsEnabled = false;
+            TimerBlock.Visibility = Visibility.Hidden;
         }
 
-        
+        public int TickCounter
+        {
+            get { return (int)GetValue(TickCounterProperty); }
+            set { SetValue(TickCounterProperty, value); }
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+
+            if (--TickCounter <= 0)
+            {
+                var timer = (DispatcherTimer)sender;
+                timer.Stop();
+            }
+        }
 
         //Присвоение всех словарей для доступа к XAML по именам
         private void AssignDict()
@@ -254,42 +275,76 @@ namespace Bunker_WPF
             ClearBlocks(BlockVoteQuantityDict);
             BVoting.Content = "Начать голосование";
 
+            
             //Все кнопки, которые могли быть отключены - включаются
             ChangeEnableSub(true, false, false);
             ChangeEnable(ButtonVoteDict, false);
             BNew_Condition.IsEnabled = true;
 
-            int number;
-            int start;
-            int end;
-            int liveadd;
-            if (Int32.TryParse(HowManyPlayers.Text, out number) && Int32.TryParse(PlayersForEndingGame.Text, out number))
-            {
-                start = Int32.Parse(PlayersForEndingGame.Text);
-                end = Int32.Parse(HowManyPlayers.Text);
-                liveadd = Int32.Parse(LiveAddBox.Text);
-            }
-            else
-            {
-                start = 8;
-                end = 4;
-                liveadd = 0;
-            }
-            Game game1 = new Game(this, start, end, liveadd);
+            //Считывание настроек
+            int start = TryAndParsing(PlayersForEndingGame, 8);
+            int end = TryAndParsing(HowManyPlayers, 4);
+            int liveadd = TryAndParsing(LiveAddBox, 0);
+            int timetoalive = TryAndParsing(TimeBoxAlive, 0);
+            int timetosurvive = TryAndParsing(TimeBoxSurvive, 0);
+
+            Game game1 = new Game(this, start, end, liveadd, timetoalive, timetosurvive);
 
             Discharge();
 
             CurrentGame = game1.StartGame();
 
+            //Сбрасывает таймер
+            if (CurrentGame.TimeTalkAlive != 0)
+            {
+                //Инициализируем таймер
+                timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1d);
+                timer.Tick += new EventHandler(Timer_Tick);
+                TickCounter = 0;
+                timer.Stop();
+                TimerBlock.Visibility = Visibility.Hidden;
+            }
+
             ChangeEnable(ButtonDeleteDict, true);
             AssignNames();
+        }
+
+        //Метод для считки настроек
+        public int TryAndParsing(TextBox block, int def)
+        {
+            int numb;
+            if(Int32.TryParse(block.Text, out numb))
+            {
+                return Int32.Parse(block.Text);
+            }
+            else
+            {
+                return def;
+            }
+        }
+
+        public void HideTimer()
+        {
+            if (CurrentGame.TimeTalkAlive != 0)
+            {
+                TickCounter = 0;
+                timer.Stop();
+                TimerBlock.Visibility = Visibility.Hidden;
+            }
+        }
+
+        public void ViseTmer(int time)
+        {
+            TickCounter = time;
+            TimerBlock.Visibility = Visibility.Visible;
+            timer.Start();
         }
 
         public void New_Round(object sender, RoutedEventArgs e)
         {
             CurrentGame.StartNewRound(Player.PlayersList);
         }
-
 
         //Используется для присваивания имени игроку
         public void ChangedBoxName(object sender, RoutedEventArgs e)
@@ -321,12 +376,14 @@ namespace Bunker_WPF
             //Все варианты развития голосования
             if (BVoting.Content.ToString() == "Начать голосование")
             {
+                HideTimer();
                 int i = 0;
                 foreach (var player in Player.PlayersList)
                 {
-                    if (player.OnVote) { i++; }
+                    if (player.OnVote && player.Vote == CurrentGame.MaxVote) { i++; }
                 }
-                if(i==0)
+
+                if (i==0)
                 {
                     CurrentGame.PrintMes("Никто не был выставлен на голосование, переход к следующему раунду");
                     ChangeEnableSub(true, false, false);
@@ -337,7 +394,7 @@ namespace Bunker_WPF
                     ChangeEnable(ButtonVoteDict, true);
                     foreach (var player in Player.PlayersList)
                     {
-                        if (!player.OnVote)
+                        if (!player.OnVote || player.Vote != CurrentGame.MaxVote)
                         {
                             if (player.Quanity < 10)
                             {
@@ -349,15 +406,21 @@ namespace Bunker_WPF
                             }
                         }
                     }
+
+                    
+
                     List<Player> tosurvive = new List<Player>();
                     foreach (var player in Player.PlayersList)
                     {
-                        if (player.OnVote) { tosurvive.Add(player); }
+                        if (player.OnVote && player.Vote == CurrentGame.MaxVote) { tosurvive.Add(player); }
                     }
+
+                    //Сброс голосов, перед следующим голосованием
+                    CurrentGame.ResetVotes();
+
                     if (tosurvive.Count == 1) { CurrentGame.DeletePlayerByVotes(tosurvive); }
                     ChangeEnable(ButtonExposeDict, false);
                 }
-                
             }
             else if(IsSurvive == true)
             {
@@ -372,7 +435,6 @@ namespace Bunker_WPF
                 {
                     ChangeEnableSub(false, true, false);
                 }
-                
             }
             else if(IsSurvive == false)
             {
@@ -437,6 +499,7 @@ namespace Bunker_WPF
                     {
                         player.OnVote = true;
                         CurrentGame.PrintMes($"Игрок {player.Name} выставлен");
+                        btn.IsEnabled = false;
                         break;
                     }
                 }
@@ -455,16 +518,6 @@ namespace Bunker_WPF
                 CurrentGame.Cataclysm.FlagZeroToOne++;
                 BNew_Condition.IsEnabled = false;
             }
-        }
-
-        private void LiveAddBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void HowManyPlayers_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 

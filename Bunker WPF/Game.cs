@@ -11,8 +11,8 @@ namespace Bunker
     {
         //Общие настройки
         public readonly int LevelAdd = 0;     //Константа, отвечающая за минимальный рубеж открытия позиций в начале игры
-        public readonly int TimeTalkAlive = 0; //Константа, отвечающая за количество времени, дающееся на разговор живым игрокам (если равно 0, то время неограничено)
-        public readonly int TimeToSurvive = 0; //Константа, отвечающая за количество времени, дающееся на разговор при схватке (если равно 0, то время неограничено)
+        public readonly int TimeTalkAlive = 60; //Константа, отвечающая за количество времени, дающееся на разговор живым игрокам (если равно 0, то время неограничено)
+        public readonly int TimeToSurvive = 30; //Константа, отвечающая за количество времени, дающееся на разговор при схватке (если равно 0, то время неограничено)
         public readonly int PlayersToEnd = 4;
         public readonly int PlayersToStart = 8;
         //Общие условия игры
@@ -72,7 +72,7 @@ namespace Bunker
             PlayersToEnd = playerstoend;
         }
 
-        public Game(int playerstostart, int playerstoend, int timetalkalive, int timetosurvive,  MainWindow main, int leveladd = 0, bool MessageOn = true) : this(main,  playerstostart, playerstoend, leveladd)
+        public Game(MainWindow main, int playerstostart, int playerstoend, int leveladd, int timetalkalive, int timetosurvive, bool MessageOn = true) : this(main,  playerstostart, playerstoend, leveladd)
         {
             TimeTalkAlive = timetalkalive;
             TimeToSurvive = timetosurvive;
@@ -120,6 +120,8 @@ namespace Bunker
         //Один проход по всем игрокам (surviveround = true раунд выживания)
         public void StartNewRound(List<Player> playerlist,bool surviveround = false)
         {
+            Main.HideTimer();
+
             Main.ChangeEnableSub(false, true, false);
             Main.ChangeEnable(Main.ButtonVoteDict, false);
 
@@ -179,13 +181,10 @@ namespace Bunker
         //с одинаковым количеством голосов
         public void Talking(bool onvote)
         {
-            if (this.TimeTalkAlive != 0)
-            {
-                //Таймер
-            }
             //Для всех игроков
             if(onvote == false)
             {
+                Main.ViseTmer(TimeTalkAlive);
                 if (PlayersEndTalk < Player.PlayersList.Count)
                 {
                     if (PlayersEndTalk + 1 < Player.PlayersList.Count)
@@ -205,17 +204,16 @@ namespace Bunker
             //Раунд выживаемых
             else 
             {
+                Main.ViseTmer(TimeToSurvive);
                 List<Player> survivors = new List<Player>();
                 foreach (var player in Player.PlayersList)
                 {
-                    if(player.OnVote == true)
+                    if(player.OnVote == true && player.Vote == MaxVote)
                     {
                         survivors.Add(player);
                     }
                 }
 
-                ResetVotes();
-                
                 if (PlayersEndTalk < survivors.Count)
                 {
                     if (PlayersEndTalk + 1 < survivors.Count)
@@ -230,8 +228,8 @@ namespace Bunker
                         //Main.BVoting.Content = "Начать голосование";
                         Main.BVoting.IsEnabled = true;
                     }
-                    PlayersEndTalk++;
                 }
+                PlayersEndTalk++;
             }
         }
 
@@ -310,6 +308,7 @@ namespace Bunker
             Main.TextBlockDict["BlockPlayer" + tosurvive[0].Quanity.ToString()].Text = "";
             Main.ChangeEnableSub(true, false, false);
             MaxVote = 0;
+            IsNow = false;
         }
         //Сброс всех голосов до 0
         public void ResetVotes()
