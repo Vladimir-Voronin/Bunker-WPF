@@ -376,6 +376,7 @@ namespace Bunker_WPF
             //Все варианты развития голосования
             if (BVoting.Content.ToString() == "Начать голосование")
             {
+                ChangeEnable(ButtonExposeDict, false);
                 HideTimer();
                 int i = 0;
                 foreach (var player in Player.PlayersList)

@@ -146,7 +146,7 @@ namespace Bunker
                 GameIn?.Invoke($"Начался раунд {RoundNumber}");
             }
             
-            Main.BNext_Talking.Content = $"Ход игрока {playerlist[PlayersEndTalk].Name}";
+            Main.BNext_Talking.Content = $"Передать ход игроку {playerlist[PlayersEndTalk].Name}";
             //Таймер (подключить отдельно для возможности игры с таймером и без)
             
             CheckEndGame();
@@ -189,7 +189,7 @@ namespace Bunker
                 {
                     if (PlayersEndTalk + 1 < Player.PlayersList.Count)
                     {
-                        Main.BNext_Talking.Content = $"Ход игрока {Player.PlayersList[PlayersEndTalk + 1].Name}";
+                        Main.BNext_Talking.Content = $"Передать ход игроку {Player.PlayersList[PlayersEndTalk + 1].Name}";
                     }
                     else if (PlayersEndTalk + 1 == Player.PlayersList.Count)
                     {
@@ -218,7 +218,7 @@ namespace Bunker
                 {
                     if (PlayersEndTalk + 1 < survivors.Count)
                     {
-                        Main.BNext_Talking.Content = $"Ход игрока {survivors[PlayersEndTalk + 1].Name}";
+                        Main.BNext_Talking.Content = $"Передать ход игроку {survivors[PlayersEndTalk + 1].Name}";
                     }
                     if (PlayersEndTalk + 1 == survivors.Count)
                     {
