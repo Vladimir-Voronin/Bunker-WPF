@@ -19,3 +19,4 @@ D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF.csproj.GenerateResource.cache
 D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF.csproj.CopyComplete
 D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF.exe
 D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF.pdb
+D:\Bunker WPF\Bunker WPF\obj\Release\Bunker WPF.csprojAssemblyReference.cache

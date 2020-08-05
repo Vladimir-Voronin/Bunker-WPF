@@ -1,0 +1,28 @@
+D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\Bunker WPF\MaterialDesignColors.dll
+D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\Bunker WPF\MaterialDesignThemes.Wpf.dll
+D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\Bunker WPF\MaterialDesignColors.pdb
+D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\Bunker WPF\MaterialDesignThemes.Wpf.pdb
+D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\Bunker WPF\Bunker WPF.exe
+D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\Bunker WPF\Bunker WPF.exe.config
+D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\Bunker WPF\Bunker WPF.pdb
+D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\resources.pri
+D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\AppxManifest.xml
+D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\Bunker.package.build.appxrecipe
+D:\Bunker WPF\Bunker.package\obj\Release\Bunker.package.wapprojAssemblyReference.cache
+D:\Bunker WPF\Bunker.package\obj\Release\priconfig.xml
+D:\Bunker WPF\Bunker.package\obj\Release\priconfig.xml.intermediate
+D:\Bunker WPF\Bunker.package\obj\Release\unfiltered.layout.resfiles
+D:\Bunker WPF\Bunker.package\obj\Release\unfiltered.layout.resfiles.intermediate
+D:\Bunker WPF\Bunker.package\obj\Release\filtered.layout.resfiles
+D:\Bunker WPF\Bunker.package\obj\Release\filtered.layout.resfiles.intermediate
+D:\Bunker WPF\Bunker.package\obj\Release\excluded.layout.resfiles
+D:\Bunker WPF\Bunker.package\obj\Release\excluded.layout.resfiles.intermediate
+D:\Bunker WPF\Bunker.package\obj\Release\resources.resfiles
+D:\Bunker WPF\Bunker.package\obj\Release\resources.resfiles.intermediate
+D:\Bunker WPF\Bunker.package\obj\Release\pri.resfiles
+D:\Bunker WPF\Bunker.package\obj\Release\pri.resfiles.intermediate
+D:\Bunker WPF\Bunker.package\obj\Release\qualifiers.txt
+D:\Bunker WPF\Bunker.package\obj\Release\qualifiers.txt.intermediate
+D:\Bunker WPF\Bunker.package\obj\Release\MultipleQualifiersPerDimensionFound.txt
+D:\Bunker WPF\Bunker.package\obj\Release\ProjectArchitectures.txt
+D:\Bunker WPF\Bunker.package\obj\Release\Bunker.package.wapproj.LastBuild.txt

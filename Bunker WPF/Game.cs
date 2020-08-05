@@ -135,14 +135,24 @@ namespace Bunker
 
             if (surviveround == false)
             {
+                RoundNumber++;
                 foreach (var player in playerlist)
                 {
                     player.OnVote = false;
                 }
+
+                //Сдвигаем круг ходов на одного игрока
+                if(RoundNumber != 1)
+                {
+                    Player firstplayer = Player.PlayersList[0];
+                    Player.PlayersList.Remove(firstplayer);
+                    Player.PlayersList.Add(firstplayer);
+                }
+
                 Main.ChangeEnable(Main.ButtonExposeDict, true);
                 ResetVotes();
                 Main.IsSurvive = false;
-                RoundNumber++;
+                
                 GameIn?.Invoke($"Начался раунд {RoundNumber}");
             }
             

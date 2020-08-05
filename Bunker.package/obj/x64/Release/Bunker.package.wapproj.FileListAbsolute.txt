@@ -1,0 +1,28 @@
+D:\Bunker WPF\Bunker.package\bin\x64\Release\Bunker WPF\MaterialDesignColors.dll
+D:\Bunker WPF\Bunker.package\bin\x64\Release\Bunker WPF\MaterialDesignThemes.Wpf.dll
+D:\Bunker WPF\Bunker.package\bin\x64\Release\Bunker WPF\MaterialDesignColors.pdb
+D:\Bunker WPF\Bunker.package\bin\x64\Release\Bunker WPF\MaterialDesignThemes.Wpf.pdb
+D:\Bunker WPF\Bunker.package\bin\x64\Release\Bunker WPF\Bunker WPF.exe
+D:\Bunker WPF\Bunker.package\bin\x64\Release\Bunker WPF\Bunker WPF.exe.config
+D:\Bunker WPF\Bunker.package\bin\x64\Release\Bunker WPF\Bunker WPF.pdb
+D:\Bunker WPF\Bunker.package\bin\x64\Release\resources.pri
+D:\Bunker WPF\Bunker.package\bin\x64\Release\AppxManifest.xml
+D:\Bunker WPF\Bunker.package\bin\x64\Release\Bunker.package.build.appxrecipe
+D:\Bunker WPF\Bunker.package\obj\x64\Release\Bunker.package.wapprojAssemblyReference.cache
+D:\Bunker WPF\Bunker.package\obj\x64\Release\priconfig.xml
+D:\Bunker WPF\Bunker.package\obj\x64\Release\priconfig.xml.intermediate
+D:\Bunker WPF\Bunker.package\obj\x64\Release\unfiltered.layout.resfiles
+D:\Bunker WPF\Bunker.package\obj\x64\Release\unfiltered.layout.resfiles.intermediate
+D:\Bunker WPF\Bunker.package\obj\x64\Release\filtered.layout.resfiles
+D:\Bunker WPF\Bunker.package\obj\x64\Release\filtered.layout.resfiles.intermediate
+D:\Bunker WPF\Bunker.package\obj\x64\Release\excluded.layout.resfiles
+D:\Bunker WPF\Bunker.package\obj\x64\Release\excluded.layout.resfiles.intermediate
+D:\Bunker WPF\Bunker.package\obj\x64\Release\resources.resfiles
+D:\Bunker WPF\Bunker.package\obj\x64\Release\resources.resfiles.intermediate
+D:\Bunker WPF\Bunker.package\obj\x64\Release\pri.resfiles
+D:\Bunker WPF\Bunker.package\obj\x64\Release\pri.resfiles.intermediate
+D:\Bunker WPF\Bunker.package\obj\x64\Release\qualifiers.txt
+D:\Bunker WPF\Bunker.package\obj\x64\Release\qualifiers.txt.intermediate
+D:\Bunker WPF\Bunker.package\obj\x64\Release\MultipleQualifiersPerDimensionFound.txt
+D:\Bunker WPF\Bunker.package\obj\x64\Release\ProjectArchitectures.txt
+D:\Bunker WPF\Bunker.package\obj\x64\Release\Bunker.package.wapproj.LastBuild.txt

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DESKTOP-BVH0N8H</Machine>
+    <WindowsUser>Neptune</WindowsUser>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetOsVersion>10.0</TargetOsVersion>
+    <TargetOsDescription>Windows 10.0</TargetOsDescription>
+    <SolutionConfiguration>Release|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>c73c07cd-465f-4202-8415-2ba9771181af</PackageIdentityName>
+    <PackageIdentityPublisher>CN=Neptune</PackageIdentityPublisher>
+    <IntermediateOutputPath>D:\Bunker WPF\Bunker.package\obj\Release\</IntermediateOutputPath>
+    <RemoteDeploymentType>
+    </RemoteDeploymentType>
+    <PackageRegistrationPath>
+    </PackageRegistrationPath>
+    <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
+    <DeployOptionalPackages>false</DeployOptionalPackages>
+    <WindowsSdkPath>
+    </WindowsSdkPath>
+    <LayoutDir>D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\AppX</LayoutDir>
+    <RegisteredManifestChecksum>FC93C8BA56E0407B3429B3F1F98B8F186788813CB41720C0A4B1781DDB02F5C3</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>c73c07cd-465f-4202-8415-2ba9771181af_1.0.0.0_neutral__4aym1rcx9jdve</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>c73c07cd-465f-4202-8415-2ba9771181af_4aym1rcx9jdve!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>c73c07cd-465f-4202-8415-2ba9771181af</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Neptune</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-08-05T16:59:47.930</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="D:\Bunker WPF\Bunker.package\Images\SplashScreen.scale-200.png">
+      <PackagePath>Images\SplashScreen.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-03-06T10:04:07.660</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Bunker WPF\Bunker.package\Images\LockScreenLogo.scale-200.png">
+      <PackagePath>Images\LockScreenLogo.scale-200.png</PackagePath>
+      <Modified>2020-03-06T10:04:07.660</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Bunker WPF\Bunker.package\Images\Square150x150Logo.scale-200.png">
+      <PackagePath>Images\Square150x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-03-06T10:04:07.660</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Bunker WPF\Bunker.package\Images\Square44x44Logo.scale-200.png">
+      <PackagePath>Images\Square44x44Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-03-06T10:04:07.660</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Bunker WPF\Bunker.package\Images\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <PackagePath>Images\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-03-06T10:04:07.660</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Bunker WPF\Bunker.package\Images\StoreLogo.png">
+      <PackagePath>Images\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-03-06T10:04:07.660</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Bunker WPF\Bunker.package\Images\Wide310x150Logo.scale-200.png">
+      <PackagePath>Images\Wide310x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2020-03-06T10:04:07.660</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Bunker WPF\Bunker.package\bin\AnyCPU\Release\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2020-08-05T16:59:47.866</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Bunker WPF\packages\MaterialDesignColors.1.2.6\lib\net45\MaterialDesignColors.dll">
+      <PackagePath>Bunker WPF\MaterialDesignColors.dll</PackagePath>
+      <Modified>2020-05-25T05:53:42.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Bunker WPF\packages\MaterialDesignThemes.3.1.3\lib\net45\MaterialDesignThemes.Wpf.dll">
+      <PackagePath>Bunker WPF\MaterialDesignThemes.Wpf.dll</PackagePath>
+      <Modified>2020-05-25T05:53:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Bunker WPF\Bunker WPF\bin\Release\Bunker WPF.exe">
+      <PackagePath>Bunker WPF\Bunker WPF.exe</PackagePath>
+      <Modified>2020-08-05T16:59:47.564</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Bunker WPF\Bunker WPF\bin\Release\Bunker WPF.exe.config">
+      <PackagePath>Bunker WPF\Bunker WPF.exe.config</PackagePath>
+      <Modified>2020-07-30T14:49:05.840</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
