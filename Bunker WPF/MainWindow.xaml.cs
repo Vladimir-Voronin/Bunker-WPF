@@ -505,6 +505,7 @@ namespace Bunker_WPF
                 }
             }
         }
+
         private void New_Condition(object sender, RoutedEventArgs e)
         {
             if (CurrentGame.Cataclysm.FlagZeroToOne == 0)

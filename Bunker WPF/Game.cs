@@ -278,6 +278,7 @@ namespace Bunker
             else if (tosurvive.Count == 1)
             {
                 DeletePlayerByVotes(tosurvive);
+                MaxVote = 0;
             }
             else if(IsNow == false)
             {
@@ -302,12 +303,13 @@ namespace Bunker
                         player.DeletePlayer();
                         GameIn?.Invoke($"Игрок {player.Name} покидает игру");
                         Main.TextBlockDict["BlockPlayer" + player.Quanity.ToString()].Text = "";
-                        MaxVote = 0;
                     }
+                    MaxVote = 0;
                 }
                 Main.BNext_Talking.Content = "Ход следующего игрока";
                 Main.IsSurvive = false;
                 Main.ChangeEnableSub(true, false, false);
+                IsNow = false;
             }
         }
 

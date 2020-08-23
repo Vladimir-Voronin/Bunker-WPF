@@ -31,7 +31,7 @@
     <AppXManifest Include="D:\Bunker WPF\Bunker.package\bin\x64\Release\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-08-05T17:12:06.959</Modified>
+      <Modified>2020-08-23T15:39:37.256</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -83,7 +83,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Bunker WPF\Bunker WPF\bin\Release\Bunker WPF.exe">
       <PackagePath>Bunker WPF\Bunker WPF.exe</PackagePath>
-      <Modified>2020-08-05T17:12:06.691</Modified>
+      <Modified>2020-08-23T15:39:36.836</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Bunker WPF\Bunker WPF\bin\Release\Bunker WPF.exe.config">
       <PackagePath>Bunker WPF\Bunker WPF.exe.config</PackagePath>
